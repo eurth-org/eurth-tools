@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { llmsFor, site as SITE } from '../eurth.config.mjs';
-import { aboutCopy, adventCopy, calendarCopy, CHANGELOG, homeCopy, JOIN, NATION, NOT_FOUND, segments, TOASTS } from '../src/content/copy.js';
+import { aboutCopy, adventCopy, calendarCopy, CHANGELOG, dayRange, homeCopy, JOIN, NATION, NOT_FOUND, segments, TOASTS } from '../src/content/copy.js';
 import { calendarAt } from '../src/hub/doors.js';
 import { liveTool, liveTools } from '../src/hub/live.js';
 import { describeFinding, findSpoilers, secretsAt } from '../src/hub/spoilers.js';
@@ -119,7 +119,8 @@ describe('the calendar\'s words', () => {
   it('after advent become "Advent 2026"', () => {
     const copy = calendarCopy(calendarAt(TOOLS, at(25)));
     expect(copy.heading).toBe('Advent 2026');
-    expect(copy.strap).toBe('15 tools, one a day, 10 December to 24 December 2026');
+    expect(copy.strap).toBe('15 tools, one a day, 10 to 24 December 2026');
+    expect(dayRange({ first: '28 November', last: '12 December' })).toBe('28 November to 12 December');
     expect(adventCopy(calendarAt(TOOLS, at(25))).heading).toBe('Advent 2026');
     expect(adventCopy(calendarAt(TOOLS, at(25))).how.points[0]).toMatch(/^A door opened every day/);
   });

@@ -16,18 +16,26 @@ import type { LiveTool } from '../hub/live.js';
 
 export const JOIN = { label: 'Join Eurth', href: 'https://eurth.org/signup' } as const;
 
+/** "10 to 24 December": the calendar's days, with the month said once when both are in the same one. */
+export function dayRange(calendar: Pick<Calendar, 'first' | 'last'>): string {
+  const month = (day: string) => day.replace(/^\d+ /, '');
+  const { first, last } = calendar;
+  return month(first) === month(last) ? `${first.replace(/ \D+$/, '')} to ${last}` : `${first} to ${last}`;
+}
+
 /** The calendar's heading and the lines around it, which change with the season. */
 export function calendarCopy(calendar: Calendar): { heading: string; strap: string; intro: string; status: string } {
-  const { total, open, first, last, year } = calendar;
+  const { total, open, first, year } = calendar;
+  const days = dayRange(calendar);
   if (calendar.season === 'after') {
     return {
       heading: `Advent ${year}`,
-      strap: `${total} tools, one a day, ${first} to ${last} ${year}`,
+      strap: `${total} tools, one a day, ${days} ${year}`,
       intro: `In December ${year} a door opened every day for ${total} days, each with a new tool behind it. They are all open now, and they stay open.`,
       status: `All ${total} doors are open.`,
     };
   }
-  const strap = `${total} new tools, one a day, ${first.replace(/ \D+$/, '')} to ${last}`;
+  const strap = `${total} new tools, one a day, ${days}`;
   if (calendar.season === 'before') {
     return {
       heading: 'The worldbuilding advent calendar',
@@ -100,25 +108,26 @@ export const NATION = {
 
 /** The advent page: the calendar on its own, for sharing. */
 export function adventCopy(calendar: Calendar) {
-  const { total, first, last, year } = calendar;
+  const { total, year } = calendar;
+  const days = dayRange(calendar);
   const after = calendar.season === 'after';
   return {
     title: after ? `Advent ${year}: ${total} free worldbuilding tools, one behind each door` : `The worldbuilding advent calendar: ${total} free tools in ${total} days`,
     description: after
       ? `The worldbuilding advent calendar of ${year}: ${total} free tools from the Eurth community, one behind each door, all open now. No account, no ads, nothing tracked.`
-      : `A worldbuilding advent calendar from the Eurth community: ${total} free tools, a new one behind a door every day from ${first} to ${last} ${year}. No peeking.`,
+      : `A worldbuilding advent calendar from the Eurth community: ${total} free tools, a new one behind a door every day from ${days} ${year}. No peeking.`,
     heading: after ? `Advent ${year}` : 'The worldbuilding advent calendar',
     calendar: calendarCopy(calendar),
     how: {
       heading: 'How it works',
       points: after
         ? [
-            `A door opened every day at midnight, Brussels time, from ${first} to ${last} ${year}.`,
+            `A door opened every day at midnight, Brussels time, from ${days} ${year}.`,
             'Every tool behind a door is free and stays free: no ads, no accounts, nothing tracked.',
             'Nothing was hidden in the page. Each night the site was rebuilt with one more door in it.',
           ]
         : [
-            `A door opens every day at 00:00, Brussels time, from ${first} to ${last}.`,
+            `A door opens every day at 00:00, Brussels time, from ${days}.`,
             'Every tool behind a door is free and stays free: no ads, no accounts, nothing tracked.',
             "No peeking: a locked door isn't hidden in the page, it isn't in the page at all. Each night the site is rebuilt with one more door in it. Do look at the source; we did.",
           ],
