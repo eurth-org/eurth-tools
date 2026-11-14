@@ -1,5 +1,7 @@
 # Feedback log
 
-Requests and what became of them, newest first.
+Every point from a review, and the release that did it. Newest first.
 
-Nothing yet.
+| # | When | Point | Done in |
+| --- | --- | --- | --- |
+| | | Nothing yet. | |

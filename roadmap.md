@@ -8,14 +8,16 @@ Three parts: what comes next, what each release added (newest first), and what's
 
 **14 November 2026.** Phase 1 is done: the logic, the data and the words are written and tested (see "14 November 2026: groundwork" below). There is no site yet, on purpose.
 
-**Next: Phase 2, step 1**, as soon as @eurth/style 1.0.0 is released. Check with `gh release list -R eurth-org/eurth-style`; on 14 November there was no release, tag or HANDBOOK.md yet. When there is: read HANDBOOK.md first (it wins over the brief), copy the starter template, replace `package.json` and the configs with the starter's, keep `src/hub/`, `src/data/`, `src/content/` and `tests/`, delete `tests/fixtures/tools.json` and read the tools from `@eurth/style/build` instead (`everyTool()`, `buildTime()`).
+**Next: Phase 2, step 1**, as soon as @eurth/style 1.0.0 is released. Check with `gh release list -R eurth-org/eurth-style`; late on 14 November HANDBOOK.md and the starter were on GitHub (and read: the notes below come from it), but there was no tag or release yet. When there is: read HANDBOOK.md first (it wins over the brief), copy the starter template, replace `package.json` and the configs with the starter's, keep `src/hub/`, `src/data/`, `src/content/` and `tests/`, delete `tests/fixtures/tools.json` and read the tools from `@eurth/style/build` instead (`everyTool()`, `buildTime()`).
 
 Waiting on others:
 
 - **@eurth/style 1.0.0** (Foundations). Things the hub needs from it or should raise with it:
+  - The nightly run: the handbook gives the hub the shared `tool-nightly.yml` with `ahead: true` (build for the coming midnight, wait, deploy at 00:00), and says not to add steps of our own. So the hub's workflow is a thin caller on the brief's schedule (22:30 UTC, 8 to 24 December, and by hand), and `clock.ts` stays as the tested statement of what that run must do, and the source of the seventeen build times for the no-hints test. Check that the shared workflow runs `npm test` on the build it is about to deploy.
+  - The profile buttons: the handbook has every tool use `ProfileButtons.svelte` from @eurth/profile. The hub only reads a file and saves nothing, and the library's schema would put the names of closed doors in the hub's script (decision 4). Either the hub keeps its own small reader, or @eurth/profile gains a way to read a file without the schema; the second would also fix it for every other tool.
   - Cache headers: the Astro integration always writes `_headers` itself. The hub needs a short `Cache-Control` on its pages; see whether the handbook has a way, or ask for one.
   - A flag that lasts for the visit: the door's swing should happen once a visit, and the visit's switches ride in `window.name` in a fixed shape with no room for more. Until there is a helper, the swing goes by how the page was reached (`delight.ts`).
-  - The hub's title can't follow "<Name>: free online <thing> maker for worldbuilders"; it leads with "Free worldbuilding tools".
+  - Titles: the hub's start page can't follow "<Name>: free online <thing> maker for worldbuilders"; it leads with "Free worldbuilding tools". The other pages follow the handbook, "<Page> · Tools".
   - @eurth/profile's schema names every section in any tool's script that bundles it ("dynasty", "passport", "anthem"), and the suite's spoiler test only looks for addresses. Foundations should know.
 - **@eurth/profile 1.0.0** is written and committed but not tagged. The hub doesn't install it (decision 4).
 - **Card** (door 15) decides how a profile reaches it. Until it says otherwise, "Open the card" is a plain link.

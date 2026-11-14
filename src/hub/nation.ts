@@ -59,7 +59,7 @@ export interface Nation {
 
 export type ReadResult = { ok: true; nation: Nation } | { ok: false; message: string };
 
-const NOT_A_PROFILE = "That file isn't a nation profile. A profile is a .eurth.json file saved from one of the tools.";
+const NOT_A_PROFILE = "That file isn't a nation profile. Pick one that ends in .eurth.json.";
 
 /** Plain text, without control characters, cut to a length. */
 function clean(value: unknown, max: number): string {

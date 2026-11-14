@@ -174,7 +174,7 @@ describe('reading a profile', () => {
 
 describe('a file that is not a profile', () => {
   it('is turned away with a sentence, never an exception', () => {
-    const notOne = "That file isn't a nation profile. A profile is a .eurth.json file saved from one of the tools.";
+    const notOne = "That file isn't a nation profile. Pick one that ends in .eurth.json.";
     expect(refused('')).toBe(notOne);
     expect(refused('not json')).toBe(notOne);
     expect(refused('[]')).toBe(notOne);
