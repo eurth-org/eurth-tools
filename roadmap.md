@@ -19,18 +19,18 @@ Waiting on others:
   - A flag that lasts for the visit: the door's swing should happen once a visit, and the visit's switches ride in `window.name` in a fixed shape with no room for more. Until there is a helper, the swing goes by how the page was reached (`delight.ts`).
   - Titles: the hub's start page can't follow "<Name>: free online <thing> maker for worldbuilders"; it leads with "Free worldbuilding tools". The other pages follow the handbook, "<Page> · Tools".
   - @eurth/profile's schema names every section in any tool's script that bundles it ("dynasty", "passport", "anthem"), and the suite's spoiler test only looks for addresses. Foundations should know.
-- **@eurth/profile 1.0.0** is written and committed but not tagged. The hub doesn't install it (decision 4).
+- **@eurth/profile 1.0.0** is written and committed but not tagged. The hub doesn't install it (decision 4, below).
 - **Card** (door 15) decides how a profile reaches it. Until it says otherwise, "Open the card" is a plain link.
-- **Stijn:** the redirect for worldbuilding.eurth.org (see Phase 3), and the answers to "Decisions to confirm" below.
+- **Stijn:** the redirect for worldbuilding.eurth.org (see Phase 3).
 
-## Decisions to confirm
+## Decisions
 
-Each has a default, and the build goes ahead on the default.
+Confirmed by Stijn on 14 November 2026.
 
-1. **Where the schedule lives.** The brief says the schedule is a data file in this repo; @eurth/style already holds it as `tools.json` (names, addresses, pitches, launch times, door numbers), and the header's Tools menu and every footer read it. Default: one source. The hub reads `tools.json` from @eurth/style at build time and keeps no copy, so the calendar, the menu and the footers can never disagree. Until 1.0.0 is out, the tests run against a snapshot in `tests/fixtures/`.
+1. **Where the schedule lives.** The brief says the schedule is a data file in this repo; @eurth/style already holds it as `tools.json` (names, addresses, pitches, launch times, door numbers), and the header's Tools menu and every footer read it. One source: the hub reads `tools.json` from @eurth/style at build time and keeps no copy, so the calendar, the menu and the footers can never disagree. Until 1.0.0 is out, the tests run against a snapshot in `tests/fixtures/`.
 2. **When the nightly run happens.** The site for 9 December is built on the evening of the 8th, so the schedule is 22:30 UTC on 8 to 24 December: seventeen runs, for the sites of 9 to 25 December. The last one (for the 25th) takes the ring off door 15, turns the heading into "Advent 2026" and lets the footer link to GitHub.
-3. **"Open the card".** Nothing may leave the device and nothing is stored, so the hub can't hand a file to another site. Default: once Card is live, the button is a link to it with a line saying to load the same file there. If Card defines a link that carries a small profile, the hub will use it.
-4. **The profile library in the browser.** @eurth/profile's schema names every section ("dynasty", "passport", "anthem"), and most sections are named after tools whose doors are closed. Bundled into the hub's script it would be a list of hints. Default: the hub reads the file with a small reader of its own (size cap, JSON, `meta`, which top-level sections hold anything), and the build hands the page only the sections whose tools are live. Sections for closed doors are counted, never named: "and 3 more, for doors that haven't opened yet". Worth telling Foundations: every tool that bundles the library carries those names too, and the suite's spoiler test only looks for addresses.
+3. **"Open the card".** Nothing may leave the device and nothing is stored, so the hub can't hand a file to another site. Once Card is live, the button is a link to it with a line saying to load the same file there. If Card defines a link that carries a small profile, the hub will use it.
+4. **The profile library in the browser.** @eurth/profile's schema names every section ("dynasty", "passport", "anthem"), and most sections are named after tools whose doors are closed. Bundled into the hub's script it would be a list of hints. So the hub reads the file with a small reader of its own (size cap, JSON, `meta`, which top-level sections hold anything), and the build hands the page only the sections whose tools are live. Sections for closed doors are counted, never named: "and 3 more, for doors that haven't opened yet". Worth telling Foundations: every tool that bundles the library carries those names too, and the suite's spoiler test only looks for addresses.
 
 ## Next
 
