@@ -1,0 +1,15 @@
+# Opens the door: builds on the evening before, waits for the time in LAUNCH_AT, deploys.
+# Set the cron to 22:30 UTC on the day before the door (minute hour day month): this example
+# is for a door on 31 December. Run it by hand if the scheduled run hasn't started by 22:45 UTC.
+# Once the tool is live, delete this file: CI and the nightly run take over.
+name: Launch
+
+on:
+  schedule:
+    - cron: '30 22 30 12 *'
+  workflow_dispatch:
+
+jobs:
+  launch:
+    uses: eurth-org/eurth-style/.github/workflows/tool-launch.yml@v1
+    secrets: inherit

@@ -1,0 +1,33 @@
+---
+// Who makes the tools and why: free forever, no ads, no tracking, with a way to eurth.org.
+import { githubLinksAllowed, ref } from '@eurth/style/build';
+import Page from '@eurth/style/components/Page.astro';
+import { site } from '../../eurth.config.mjs';
+import Delight from '../components/Delight.astro';
+import { aboutCopy, JOIN, segments } from '../content/copy.js';
+
+// Before 25 December 2026 no page links to GitHub; the build decides, not the visitor's clock.
+const copy = aboutCopy({ github: githubLinksAllowed() });
+---
+
+<Page site={site} title={copy.title} description={copy.description} crumbs={[{ name: 'About', path: '/about/' }]}>
+  <article class="eu-prose">
+    <h1>{copy.heading}</h1>
+    <p class="eu-lead">{copy.intro}</p>
+
+    {
+      copy.sections.map((section) => (
+        <>
+          <h2>{section.heading}</h2>
+          {section.paragraphs.map((paragraph) => (
+            <p>{segments(paragraph).map((segment) => (segment.href ? <a href={ref(segment.href, site.host)}>{segment.text}</a> : segment.text))}</p>
+          ))}
+        </>
+      ))
+    }
+
+    <p><a class="eu-join" href={ref(JOIN.href, site.host)}>{JOIN.label}</a></p>
+  </article>
+
+  <Delight />
+</Page>

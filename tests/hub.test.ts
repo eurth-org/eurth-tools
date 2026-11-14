@@ -1,7 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import changelog from '../src/data/changelog.json' with { type: 'json' };
 import sections from '../src/data/sections.json' with { type: 'json' };
-import { adventCopy, homeCopy, llmsLines, NATION } from '../src/content/copy.js';
+import { llmsFor } from '../eurth.config.mjs';
+import { adventCopy, homeCopy, NATION } from '../src/content/copy.js';
 import type { Release } from '../src/hub/changelog.js';
 import { midnightsBetween } from '../src/hub/clock.js';
 import { hubAt, type HubData } from '../src/hub/index.js';
@@ -24,7 +25,7 @@ function rehearse(moment: Date): BuiltFile[] {
     { path: 'advent/index.html', text: JSON.stringify({ copy: adventCopy(hub.calendar), calendar: hub.calendar }) },
     { path: 'changelog/index.html', text: JSON.stringify(hub.releases) },
     { path: '_astro/Nation.js', text: JSON.stringify(hub.sections) },
-    { path: 'llms.txt', text: llmsLines(hub.live, hub.calendar) },
+    { path: 'llms.txt', text: llmsFor(moment) },
     { path: 'sitemap-0.xml', text: ['/', '/advent/', '/changelog/', '/about/'].map((path) => `<loc>https://tools.eurth.org${path}</loc>`).join('') },
   ];
 }

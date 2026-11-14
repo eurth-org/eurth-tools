@@ -1,0 +1,16 @@
+---
+import Page from '@eurth/style/components/Page.astro';
+import { site } from '../../eurth.config.mjs';
+import Delight from '../components/Delight.astro';
+import { NOT_FOUND } from '../content/copy.js';
+---
+
+<Page site={site} title={NOT_FOUND.title} description={NOT_FOUND.text} noindex>
+  <div class="eu-prose">
+    <h1>{NOT_FOUND.heading}</h1>
+    <p class="eu-lead">{NOT_FOUND.text}</p>
+    <p><a class="eu-btn" href={NOT_FOUND.back.href}>{NOT_FOUND.back.label}</a></p>
+  </div>
+
+  <Delight />
+</Page>

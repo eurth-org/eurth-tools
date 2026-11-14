@@ -1,0 +1,36 @@
+---
+// The calendar on its own, for sharing. The same doors as the home page, from the same build.
+import Page from '@eurth/style/components/Page.astro';
+import { site } from '../../eurth.config.mjs';
+import Calendar from '../components/Calendar.astro';
+import Delight from '../components/Delight.astro';
+import { adventCopy } from '../content/copy.js';
+import { hubNow } from '../hub/now.js';
+
+const hub = hubNow();
+const copy = adventCopy(hub.calendar);
+---
+
+<Page site={site} title={copy.title} description={copy.description} ogAlt={copy.ogAlt} crumbs={[{ name: copy.heading, path: '/advent/' }]}>
+  <div class="advent-page">
+    <Calendar calendar={hub.calendar} level={1} />
+
+    <section class="eu-prose">
+      <h2>{copy.how.heading}</h2>
+      <ul>
+        {copy.how.points.map((point) => <li>{point}</li>)}
+      </ul>
+      <p><a class="eu-btn" href={copy.back.href}>{copy.back.label}</a></p>
+    </section>
+  </div>
+
+  <Delight />
+</Page>
+
+<style>
+  .advent-page {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
+  }
+</style>

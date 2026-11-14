@@ -1,0 +1,22 @@
+// A static site (dist/): no Worker code, only files. Static assets are free and unlimited on
+// the Workers Free plan, so a visit to the hub costs no Worker requests. Pages are served with
+// Cloudflare's default for static assets (max-age=0, must-revalidate), so a new day's build
+// shows on the next visit.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "eurth-tools",
+  // The Cloudflare account that holds the eurth.org zone. Not a secret.
+  "account_id": "0954ead81ed9fd06d343580d95902280",
+  "compatibility_date": "2026-11-01",
+  // No workers.dev address: until 9 December the site doesn't exist anywhere.
+  "workers_dev": false,
+  "preview_urls": false,
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "404-page",
+    "html_handling": "auto-trailing-slash"
+  },
+  // Deploying creates this custom domain, DNS record included: so before the door only the
+  // nightly workflow deploys, and it waits for midnight.
+  "routes": [{ "pattern": "tools.eurth.org", "custom_domain": true }]
+}

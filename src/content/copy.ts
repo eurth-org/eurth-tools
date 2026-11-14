@@ -9,29 +9,10 @@
  * calendar" and "Brussels time", and never begin a sentence or a heading with one of them.
  * tests/copy.test.ts runs the no-hints scanner over all of this for every day of advent.
  * Anything that depends on a tool being live takes that tool as an argument from the build.
+ * The site's own name, title and description are in eurth.config.mjs.
  */
 import type { Calendar } from '../hub/doors.js';
 import type { LiveTool } from '../hub/live.js';
-
-/** The site's own facts, for eurth.config.mjs. */
-export const SITE = {
-  id: 'tools',
-  name: 'Tools',
-  url: 'https://tools.eurth.org',
-  title: 'Free worldbuilding tools by Eurth: flags, governments, maps and more',
-  description: 'Free worldbuilding tools from the Eurth community: a flag maker, a government builder, a world map and more. In your browser, with no account, no ads and nothing tracked.',
-  tagline: 'Free worldbuilding tools',
-  pages: [
-    { href: '/', label: 'All tools' },
-    { href: '/advent/', label: 'Advent' },
-    { href: '/changelog/', label: 'Changelog' },
-    { href: '/about/', label: 'About' },
-  ],
-  repo: 'https://github.com/eurth-org/eurth-tools',
-  ogAlt: 'Free worldbuilding tools, at tools.eurth.org: the Eurth yurt beside an advent calendar of fifteen numbered doors, all of them closed.',
-  /** The hub's own door: LAUNCH_AT. */
-  launch: '2026-12-09T00:00:00+01:00',
-} as const;
 
 export const JOIN = { label: 'Join Eurth', href: 'https://eurth.org/signup' } as const;
 
@@ -222,22 +203,6 @@ export const TOASTS = {
   yurt: 'Home is where the yurt is.',
   doorToday: 'A new door, fresh off its hinges.',
 } as const;
-
-/** Extra lines for llms.txt, as Markdown: what the hub is, and the tools that are live. */
-export function llmsLines(live: readonly LiveTool[], calendar: Calendar): string {
-  const lines = [
-    'The hub lists every free worldbuilding tool made by Eurth, a worldbuilding and roleplay community since 2004. Every tool runs in the browser, with no account, no ads and nothing tracked.',
-    '',
-    '## Tools',
-    ...live.map((tool) => `- [${tool.name}](${tool.url}/): ${tool.pitch}`),
-    '',
-    '## Pages',
-    `- [${calendarCopy(calendar).heading}](${SITE.url}/advent/): ${calendarCopy(calendar).strap}`,
-    `- [Changelog](${SITE.url}/changelog/): every release of every live tool`,
-    `- [About](${SITE.url}/about/): who makes the tools and why they are free`,
-  ];
-  return lines.join('\n');
-}
 
 export interface Segment {
   text: string;

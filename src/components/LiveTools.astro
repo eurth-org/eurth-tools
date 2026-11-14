@@ -1,0 +1,84 @@
+---
+// "Already live": every tool that has launched when the site is built, each a card that links
+// to it. An advent tool joins the day its door opens.
+import { ref } from '@eurth/style/build';
+import Fa from '@eurth/style/components/Fa.astro';
+import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
+import { site } from '../../eurth.config.mjs';
+import type { LiveTool } from '../hub/live.js';
+
+interface Props {
+  heading: string;
+  badge: string;
+  tools: LiveTool[];
+}
+const { heading, badge, tools } = Astro.props;
+---
+
+<section class="eu-stack" aria-labelledby="live-heading">
+  <h2 id="live-heading">{heading}</h2>
+  <ul class="live">
+    {
+      tools.map((tool) => (
+        <li>
+          <a class="eu-card eu-card--outline live-card" href={ref(tool.url, site.host)} data-same-tab>
+            <span class="live-top">
+              <span class="live-name">{tool.name}</span>
+              <span class="live-badge">
+                <Fa icon={faCircleCheck} />
+                {badge}
+              </span>
+            </span>
+            <span>{tool.pitch}</span>
+            <span class="eu-data live-host">{tool.host}</span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</section>
+
+<style>
+  .live {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(calc(var(--space-16) * 4), 1fr));
+    gap: var(--space-3);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .live li {
+    display: flex;
+  }
+
+  .live-card {
+    flex: 1;
+    gap: var(--space-2);
+    padding: var(--space-4);
+  }
+
+  .live-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+  }
+
+  .live-name {
+    font: var(--type-heading);
+  }
+
+  .live-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    color: var(--success-text);
+    font: var(--type-label);
+  }
+
+  .live-host {
+    margin-top: auto;
+    color: var(--accent-text);
+  }
+</style>

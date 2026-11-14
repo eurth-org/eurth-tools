@@ -1,0 +1,88 @@
+---
+// The home page: the heading, the advent calendar, the tools that are live, "Your nation" and
+// one call to join Eurth. All of it is real HTML from the build, so it reads with JavaScript
+// off; only reading a profile file needs script.
+//
+// No hints: everything printed here comes from hubNow(), which holds nothing about a tool whose
+// door is closed. Don't import tools.json or the data files into a page.
+import { ref } from '@eurth/style/build';
+import Page from '@eurth/style/components/Page.astro';
+import { site } from '../../eurth.config.mjs';
+import Calendar from '../components/Calendar.astro';
+import Delight from '../components/Delight.astro';
+import LiveTools from '../components/LiveTools.astro';
+import { homeCopy, NATION } from '../content/copy.js';
+import { hubNow } from '../hub/now.js';
+import Nation from '../tool/Nation.svelte';
+
+const hub = hubNow();
+const copy = homeCopy(hub.calendar);
+
+// Links from one Eurth site to another say where the visitor came from.
+const sections = hub.sections.map((section) => (section.tool ? { ...section, tool: { ...section.tool, url: ref(section.tool.url, site.host) } } : section));
+const card = hub.card ? NATION.card({ name: hub.card.name, url: ref(hub.card.url, site.host) }) : undefined;
+
+// For search engines: the list of tools, as far as it is public today.
+const itemList = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: copy.heading,
+  numberOfItems: hub.live.length,
+  itemListElement: hub.live.map((tool, i) => ({ '@type': 'ListItem', position: i + 1, name: tool.name, description: tool.pitch, url: `${tool.url}/` })),
+};
+---
+
+<Page site={site} jsonld={[itemList]}>
+  <div class="home">
+    <header class="eu-stack intro">
+      <p class="eu-kicker">{copy.eyebrow}</p>
+      <h1>{copy.heading}</h1>
+      <p class="eu-lead">{copy.intro}</p>
+    </header>
+
+    <Calendar calendar={hub.calendar} />
+
+    <LiveTools heading={copy.live.heading} badge={copy.live.badge} tools={hub.live} />
+
+    <div class="pair">
+      <section class="eu-card" aria-labelledby="nation-heading">
+        <h2 id="nation-heading">{copy.nation.heading}</h2>
+        <p>{copy.nation.intro}</p>
+        <Nation client:load sections={sections} host={site.host} allOpen={hub.calendar.open === hub.calendar.total} card={card} />
+        <noscript><p class="eu-help">{copy.nation.noScript}</p></noscript>
+        <p class="eu-help">{copy.nation.what}</p>
+      </section>
+
+      <section class="eu-card" aria-labelledby="join-heading">
+        <h2 id="join-heading">{copy.join.heading}</h2>
+        <p>{copy.join.text}</p>
+        <p><a class="eu-join" href={ref(copy.join.button.href, site.host)}>{copy.join.button.label}</a></p>
+      </section>
+    </div>
+  </div>
+
+  <Delight />
+</Page>
+
+<style>
+  .home {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
+  }
+
+  .intro {
+    gap: var(--space-2);
+  }
+
+  .pair {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, calc(var(--space-16) * 5)), 1fr));
+    gap: var(--space-4);
+    align-items: start;
+  }
+
+  .pair p {
+    margin: 0;
+  }
+</style>

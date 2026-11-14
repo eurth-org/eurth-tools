@@ -1,0 +1,92 @@
+---
+// Every release of every live tool, newest first, from src/data/changelog.json. A release of a
+// tool whose door is closed isn't in this page at all: changelog.ts leaves it out at build time.
+import { ref } from '@eurth/style/build';
+import Page from '@eurth/style/components/Page.astro';
+import { site } from '../../eurth.config.mjs';
+import Delight from '../components/Delight.astro';
+import { CHANGELOG } from '../content/copy.js';
+import { hubNow } from '../hub/now.js';
+
+const hub = hubNow();
+---
+
+<Page site={site} title={CHANGELOG.title} description={CHANGELOG.description} crumbs={[{ name: CHANGELOG.heading, path: '/changelog/' }]}>
+  <div class="eu-stack">
+    <header class="eu-stack intro">
+      <h1>{CHANGELOG.heading}</h1>
+      <p class="eu-lead">{CHANGELOG.intro}</p>
+    </header>
+
+    {hub.releases.length === 0 && <p>{CHANGELOG.empty}</p>}
+
+    <ol class="releases">
+      {
+        hub.releases.map((release) => (
+          <li id={release.anchor}>
+            <article class="eu-card eu-card--outline">
+              <p class="eu-muted release-meta">
+                <time datetime={release.date}>{release.dateLabel}</time>
+                {release.version && <span>{CHANGELOG.version(release.version)}</span>}
+              </p>
+              <h2>{release.title}</h2>
+              <ul>
+                {release.notes.map((note) => (
+                  <li>{note}</li>
+                ))}
+              </ul>
+              <p>
+                <a class="eu-btn eu-btn--quiet" href={ref(release.tool.url, site.host)} data-same-tab>
+                  {release.tool.name}
+                  <span class="eu-visually-hidden">: {release.title}</span>
+                </a>
+              </p>
+            </article>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+
+  <Delight />
+</Page>
+
+<style>
+  .intro {
+    gap: var(--space-2);
+  }
+
+  .releases {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    max-width: var(--size-measure);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .releases p,
+  .releases ul {
+    margin: 0;
+  }
+
+  .releases ul {
+    padding-left: var(--space-6);
+  }
+
+  .releases li + li {
+    margin-top: var(--space-2);
+  }
+
+  .releases > li + li {
+    margin-top: 0;
+  }
+
+  .release-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1) var(--space-3);
+    font: var(--type-note);
+  }
+</style>

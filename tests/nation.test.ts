@@ -126,6 +126,11 @@ describe('reading a profile', () => {
     expect(href(undefined)).toBe('https://flag.eurth.org');
   });
 
+  it('says where the visitor came from on a link it follows', () => {
+    const result = readProfile(profile({ flag: { link: 'https://flag.eurth.org/?f=abc', svg: '<svg/>' } }), opening, 'tools.eurth.org');
+    expect(result.ok && result.nation.filled[0]?.href).toBe('https://flag.eurth.org/?f=abc&ref=tools.eurth.org');
+  });
+
   it('shows summaries as plain text, tidied and cut to length', () => {
     const summary = (value: unknown) => read(profile({ flag: { summary: value, svg: '<svg/>' } }), opening).filled[0]?.summary;
     expect(summary('  A  red\n\tflag.\u0000 ')).toBe('A red flag.');

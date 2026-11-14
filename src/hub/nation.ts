@@ -87,12 +87,17 @@ export function isFilled(section: unknown): boolean {
   return Object.entries(section).some(([key, value]) => key !== 'updated' && saysSomething(value));
 }
 
-/** A section's link, if it is https and leads to its own tool; otherwise nothing. */
-function ownLink(link: unknown, host: string): string | undefined {
+/**
+ * A section's link, if it is https and leads to its own tool; otherwise nothing. Like every
+ * link from one Eurth site to another, it then says where the visitor came from (?ref=).
+ */
+function ownLink(link: unknown, host: string, from: string | undefined): string | undefined {
   if (typeof link !== 'string' || link.length > MAX_LINK) return undefined;
   try {
     const url = new URL(link);
-    return url.protocol === 'https:' && url.host === host && !url.username && !url.password ? url.href : undefined;
+    if (url.protocol !== 'https:' || url.host !== host || url.username || url.password) return undefined;
+    if (from) url.searchParams.set('ref', from);
+    return url.href;
   } catch {
     return undefined;
   }
@@ -101,8 +106,9 @@ function ownLink(link: unknown, host: string): string | undefined {
 /**
  * IN THE BROWSER: read the text of a profile file against the sections the build handed over.
  * Never throws; a file that can't be used comes back with a sentence for the person.
+ * @param from this site's host, added as ?ref= to a section's own link
  */
-export function readProfile(text: string, live: readonly LiveSection[]): ReadResult {
+export function readProfile(text: string, live: readonly LiveSection[], from?: string): ReadResult {
   if (text.length > MAX_FILE_BYTES || new TextEncoder().encode(text).length > MAX_FILE_BYTES) {
     return { ok: false, message: 'That file is larger than 2 MB, which is more than a nation profile can be.' };
   }
@@ -134,7 +140,7 @@ export function readProfile(text: string, live: readonly LiveSection[]): ReadRes
     filled.push({
       section,
       label,
-      ...(tool ? { href: ownLink(body.link, tool.host) ?? tool.url, toolName: tool.name } : {}),
+      ...(tool ? { href: ownLink(body.link, tool.host, from) ?? tool.url, toolName: tool.name } : {}),
       ...(summary ? { summary } : {}),
     });
   }

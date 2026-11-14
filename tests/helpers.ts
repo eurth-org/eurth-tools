@@ -1,8 +1,8 @@
-import catalogue from './fixtures/tools.json' with { type: 'json' };
+import { everyTool } from '@eurth/style/build';
 import type { Tool } from '../src/hub/tools.js';
 
-/** A snapshot of @eurth/style's tools.json, until the hub can read the real one at build time. */
-export const TOOLS = catalogue.tools as Tool[];
+/** Every tool, as @eurth/style's tools.json has it: the list the site itself is built from. */
+export const TOOLS = everyTool() as Tool[];
 
 /** A moment from Brussels wall time in December 2026 (UTC+1): at(13, 9, 30) is 13 December, 09:30. */
 export function at(day: number, hour = 0, minute = 0, second = 0): Date {

@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { aboutCopy, adventCopy, calendarCopy, CHANGELOG, homeCopy, JOIN, llmsLines, NATION, NOT_FOUND, segments, SITE, TOASTS } from '../src/content/copy.js';
+import { llmsFor, site as SITE } from '../eurth.config.mjs';
+import { aboutCopy, adventCopy, calendarCopy, CHANGELOG, homeCopy, JOIN, NATION, NOT_FOUND, segments, TOASTS } from '../src/content/copy.js';
 import { calendarAt } from '../src/hub/doors.js';
 import { liveTool, liveTools } from '../src/hub/live.js';
 import { describeFinding, findSpoilers, secretsAt } from '../src/hub/spoilers.js';
@@ -22,7 +23,7 @@ function everyWord(moment: Date): string {
     aboutCopy({ github: true }),
     NOT_FOUND,
     TOASTS,
-    llmsLines(live, calendar),
+    llmsFor(moment),
     NATION.result('Calderwyn', 3, 3),
     NATION.result('', 0, 1),
     NATION.welcome('Calderwyn'),
@@ -67,7 +68,6 @@ describe('the site', () => {
     const hub = findTool('tools');
     expect(hub?.kind).toBe('hub');
     expect(SITE.url).toBe(hub?.url);
-    expect(new Date(SITE.launch).getTime()).toBe(new Date(hub?.launch ?? '').getTime());
     expect(SITE.tagline).toBe(hub?.pitch);
     expect(SITE.pages.map((page) => page.href)).toEqual(['/', '/advent/', '/changelog/', '/about/']);
   });
@@ -162,13 +162,12 @@ describe('your nation\'s words', () => {
 });
 
 describe('llms.txt', () => {
-  it('lists the live tools and the pages', () => {
-    const moment = at(10);
-    const lines = llmsLines(liveTools(TOOLS, moment), calendarAt(TOOLS, moment));
+  it('lists the live tools and none whose door is closed', () => {
+    const lines = llmsFor(at(10));
     expect(lines).toContain('- [Flagwright](https://flag.eurth.org/): Flags made to fly');
     expect(lines).toContain('- [Arms](https://arms.eurth.org/): Coats of arms that follow the rules');
-    expect(lines).toContain('(https://tools.eurth.org/advent/)');
     expect(lines).not.toContain('seats.eurth.org');
+    expect(lines).not.toContain('tools.eurth.org');
   });
 });
 

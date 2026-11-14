@@ -1,0 +1,226 @@
+---
+// The advent calendar: fifteen doors. A locked door is its number and its date; an open door is
+// a link to its tool; today's door has a ring and the words "Open today" (never colour alone).
+//
+// No hints: this prints only what doors.ts hands over, and a LockedDoor has no name to print.
+// Which doors are open was decided when the site was built.
+import { ref } from '@eurth/style/build';
+import Fa from '@eurth/style/components/Fa.astro';
+import { faDoorOpen, faLock, faStar } from '@fortawesome/free-solid-svg-icons';
+import { site } from '../../eurth.config.mjs';
+import { calendarCopy } from '../content/copy.js';
+import type { Calendar } from '../hub/doors.js';
+
+interface Props {
+  calendar: Calendar;
+  /** The heading's level: 2 on the home page, where the page has its own h1; 1 on the advent page. */
+  level?: 1 | 2;
+}
+const { calendar, level = 2 } = Astro.props;
+const copy = calendarCopy(calendar);
+const Heading = `h${level}` as 'h1' | 'h2';
+---
+
+<section class="advent eu-stack" aria-labelledby="advent-heading">
+  <header class="advent-head">
+    <Heading id="advent-heading">{copy.heading}</Heading>
+    <p class="eu-muted">{copy.strap}</p>
+  </header>
+  <p class="advent-intro">{copy.intro} <span class="advent-status">{copy.status}</span></p>
+
+  <ol class="doors">
+    {
+      calendar.doors.map((door) =>
+        door.state === 'open' ? (
+          <li>
+            <a class:list={['door', 'door--open', door.today && 'door--today']} href={ref(door.url, site.host)} data-same-tab data-today={door.today ? '' : undefined}>
+              <span class="door-top">
+                <span class="door-number">
+                  <span class="eu-visually-hidden">Door </span>
+                  {door.door}
+                </span>
+                <time class="door-date" datetime={door.day}>
+                  {door.date}
+                </time>
+              </span>
+              <span class:list={['door-state', door.today && 'door-state--today']}>
+                <Fa icon={door.today ? faStar : faDoorOpen} />
+                {door.label}
+              </span>
+              <span class="door-name">{door.name}</span>
+              <span class="door-pitch">{door.pitch}</span>
+              <span class="door-host eu-data">{door.host}</span>
+            </a>
+          </li>
+        ) : (
+          <li>
+            <div class="door door--locked">
+              <span class="door-top">
+                <span class="door-number">
+                  <span class="eu-visually-hidden">Door </span>
+                  {door.door}
+                </span>
+                <time class="door-date" datetime={door.day} aria-hidden="true">
+                  {door.date}
+                </time>
+              </span>
+              <span class="door-state">
+                <Fa icon={faLock} />
+                {door.label}
+              </span>
+            </div>
+          </li>
+        ),
+      )
+    }
+  </ol>
+</section>
+
+<style>
+  .advent-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-2) var(--space-4);
+  }
+
+  .advent-head p {
+    margin: 0;
+  }
+
+  .advent-intro {
+    max-width: var(--size-measure);
+    margin: 0;
+  }
+
+  .advent-status {
+    color: var(--ink-muted);
+  }
+
+  .doors {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(calc(var(--space-16) * 2.5), 1fr));
+    gap: var(--space-3);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    /* Room for a door to swing towards the reader. */
+    perspective: calc(var(--space-16) * 12);
+  }
+
+  .doors li {
+    display: flex;
+  }
+
+  .door {
+    position: relative;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: var(--space-1);
+    min-width: 0;
+    min-height: calc(var(--space-16) * 2.5);
+    padding: var(--space-4);
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-md);
+    background: var(--surface-raised);
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .door--locked {
+    border-style: dashed;
+    background: transparent;
+    color: var(--ink-muted);
+  }
+
+  a.door:hover {
+    background: var(--hover);
+  }
+
+  /* Today's door: a ring as well as the words. */
+  .door--today {
+    border: var(--size-ring) solid var(--accent-text);
+  }
+
+  .door-top {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-2);
+  }
+
+  .door-number {
+    font: var(--type-title);
+  }
+
+  .door-date {
+    color: var(--ink-muted);
+    font: var(--type-note);
+  }
+
+  .door-state {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    gap: var(--space-2);
+    font: var(--type-label);
+  }
+
+  .door--locked .door-state {
+    margin-top: auto;
+  }
+
+  .door-state--today {
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-md);
+    background: var(--selected);
+    color: var(--on-selected);
+  }
+
+  .door-name {
+    margin-top: var(--space-2);
+    font: var(--type-heading);
+  }
+
+  .door-pitch {
+    font: var(--type-body-sm);
+  }
+
+  .door-host {
+    margin-top: auto;
+    padding-top: var(--space-2);
+    color: var(--accent-text);
+    overflow-wrap: anywhere;
+  }
+
+  /* The signature touch: the first time today's door is on screen in a visit, a closed leaf
+     swings away on its hinge and shows what is behind it. The script adds the class; without
+     script, or for reduced motion, the door is simply open. */
+  .door--swinging::after {
+    content: '';
+    position: absolute;
+    inset: calc(var(--size-ring) * -1);
+    border: var(--size-ring) solid var(--accent-text);
+    border-radius: var(--radius-md);
+    background: var(--surface);
+    transform-origin: left center;
+    animation: door-swing 0.45s ease-in forwards;
+    pointer-events: none;
+  }
+
+  @keyframes door-swing {
+    from {
+      transform: rotateY(0);
+      opacity: 1;
+    }
+    80% {
+      opacity: 1;
+    }
+    to {
+      transform: rotateY(-88deg);
+      opacity: 0;
+    }
+  }
+</style>
