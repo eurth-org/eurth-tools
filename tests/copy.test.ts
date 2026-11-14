@@ -88,7 +88,8 @@ describe('the site', () => {
     for (const page of pages) {
       expect(page.title.length, page.title).toBeGreaterThan(10);
       // Every page but the start page is titled "<Page> · Tools" by the shell.
-      expect(page.title.length + ` · ${SITE.name}`.length, page.title).toBeLessThanOrEqual(70);
+      const shown = page.title === SITE.title ? page.title : `${page.title} · ${SITE.name}`;
+      expect(shown.length, shown).toBeLessThanOrEqual(70);
       expect(page.description.length, `${page.title}: ${page.description.length} characters`).toBeGreaterThanOrEqual(50);
       expect(page.description.length, `${page.title}: ${page.description.length} characters`).toBeLessThanOrEqual(200);
     }
