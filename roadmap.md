@@ -6,12 +6,18 @@ Three parts: what comes next, what each release added (newest first), and what's
 
 ## Where to pick up
 
-**14 November 2026.** The brief is saved, the repository exists, and this plan is written. Phase 1 is next, from step 1.
+**14 November 2026.** Phase 1 is done: the logic, the data and the words are written and tested (see "14 November 2026: groundwork" below). There is no site yet, on purpose.
+
+**Next: Phase 2, step 1**, as soon as @eurth/style 1.0.0 is released. Check with `gh release list -R eurth-org/eurth-style`; on 14 November there was no release, tag or HANDBOOK.md yet. When there is: read HANDBOOK.md first (it wins over the brief), copy the starter template, replace `package.json` and the configs with the starter's, keep `src/hub/`, `src/data/`, `src/content/` and `tests/`, delete `tests/fixtures/tools.json` and read the tools from `@eurth/style/build` instead (`everyTool()`, `buildTime()`).
 
 Waiting on others:
 
-- **@eurth/style 1.0.0** is not released. The package is being written (tokens, shell, `tools.json`, the build and testing helpers and a starter are on disk in the Foundations session, uncommitted), but there is no HANDBOOK.md, tag or release on GitHub yet. Phase 2 can't start until there is: check `gh release list -R eurth-org/eurth-style`. Until then no site, pages or styles.
-- **@eurth/profile 1.0.0** is written and committed but not tagged. The hub needs little from it (see "Your nation" below).
+- **@eurth/style 1.0.0** (Foundations). Things the hub needs from it or should raise with it:
+  - Cache headers: the Astro integration always writes `_headers` itself. The hub needs a short `Cache-Control` on its pages; see whether the handbook has a way, or ask for one.
+  - A flag that lasts for the visit: the door's swing should happen once a visit, and the visit's switches ride in `window.name` in a fixed shape with no room for more. Until there is a helper, the swing goes by how the page was reached (`delight.ts`).
+  - The hub's title can't follow "<Name>: free online <thing> maker for worldbuilders"; it leads with "Free worldbuilding tools".
+  - @eurth/profile's schema names every section in any tool's script that bundles it ("dynasty", "passport", "anthem"), and the suite's spoiler test only looks for addresses. Foundations should know.
+- **@eurth/profile 1.0.0** is written and committed but not tagged. The hub doesn't install it (decision 4).
 - **Card** (door 15) decides how a profile reaches it. Until it says otherwise, "Open the card" is a plain link.
 - **Stijn:** the redirect for worldbuilding.eurth.org (see Phase 3), and the answers to "Decisions to confirm" below.
 
@@ -26,24 +32,6 @@ Each has a default, and the build goes ahead on the default.
 
 ## Next
 
-### Phase 1: the logic, the data and the words (needs nothing from @eurth/style)
-
-Plain TypeScript in `src/hub/`, tests in `tests/`, data in `src/data/`, words in `src/content/`. Only TypeScript and Vitest are installed. Commit and push after each step.
-
-1. **Doors** (`doors.ts`): from the list of tools and the build's moment, the calendar as the page may show it.
-   - A locked door is a number and a date and nothing else: `{ door: 5, state: 'locked', date: '14 Dec', label: 'Opens 14 Dec', aria: 'Door 5, opens 14 Dec' }`. The type has no field for a name, pitch or address, so a page can't print one by accident.
-   - An open door adds the name, pitch, address and host. Today's door (opened on the build's Brussels calendar day) is marked `today`, for the ring and the words "Open today".
-   - The season: before (all locked), during, and after (all open, no ring, the heading "Advent 2026").
-   - Dates are Europe/Brussels days, whatever time zone the build server is in.
-   - Checks on the schedule itself: fifteen doors, numbered 1 to 15, one a day from 10 to 24 December, each at 00:00 Brussels time.
-2. **Live tools** (`live.ts`): "Already live": every launched tool and site except the hub, in `tools.json`'s order, so an advent tool joins the list the day its door opens.
-3. **The clock** (`clock.ts`): the next midnight in Brussels from any moment, as an ISO time with its offset, and the nightly plan: within two hours before midnight, build for midnight and wait; at any other time (a late start, a run by hand, a push), build for now and deploy at once. Never waits longer than two hours.
-4. **No hints** (`spoilers.ts`): the scanner the no-hints test runs over every built file. For each locked tool it looks for the address and host, the pitch, and the name as a whole word with its capital ("Dynasty", but not "the advent calendar"). It reports the file, the tool's door number and the place, never the name, so a failing CI log is not a spoiler either. A short, reviewed list of exceptions for words a library can't avoid.
-5. **Changelog** (`changelog.ts`, `src/data/changelog.json`): every release of every live tool, newest first. An entry shows only if its tool has launched and its date has come; an entry that mentions a locked tool is held back until that door opens. Seeded from the roadmaps of Map, Newsroom, Governmint and Flagwright.
-6. **Your nation** (`nation.ts`, `src/data/sections.json`): a reader for a dropped or picked profile file (2 MB cap, JSON, `meta.schema` 1, text clamped), and from it the list the page shows: each filled section whose tool is live, with its summary and a link to the tool, then a count of the rest. `sections.json` maps profile sections to tools; the build filters it, so the page only ever receives live ones.
-7. **Small things** (`delight.ts`): the "yurt" key sequence (ignored while typing in a field), and whether the door should swing: once, the first time today's door is on screen in a visit, never for reduced motion. "Once a visit" rides in the tab like @eurth/style's switches (`window.name`), not in storage.
-8. **Words** (`src/content/`): the home page's paragraph and section texts, the advent page, About (who makes the tools and why: free forever, no ads, no tracking), the 404, titles and descriptions for every page, the alt text of the sharing image, and the lines for `llms.txt`. British English, sentence case, and no tool's name with a capital before its door, which the tests check against the scanner.
-
 ### Phase 2: the site (once @eurth/style 1.0.0 is released)
 
 Start from the starter template; the handbook decides everything shared. Develop and preview locally only: until 9 December the site doesn't exist anywhere.
@@ -56,10 +44,10 @@ Start from the starter template; the handbook decides everything shared. Develop
 6. **Your nation island** (Svelte): picker and drop, the list of sections, "Open the card" once Card is live. Only the live sections are passed in as props.
 7. **Structured data:** Organization and WebSite everywhere, an ItemList of the live tools on the home page, BreadcrumbList on the other pages.
 8. **Sharing image:** the yurt, "Free worldbuilding tools" and fifteen numbered doors, all closed, the same on every day. 1200 by 630 PNG with alt text.
-9. **Signature touch and easter egg:** today's door swings open on its hinge, once a visit; typing "yurt" pitches a small yurt on the page with sparkles. Nothing for reduced motion; under half a second.
+9. **Signature touch and easter egg:** today's door swings open on its hinge, once a visit; typing "yurt" pitches a small yurt on the page with sparkles. Nothing for reduced motion; under half a second. The decisions are in `delight.ts`; this step draws them.
 10. **Cache headers:** pages revalidate (a few minutes at most) so a new day shows promptly; hashed files stay cached for a year; the service worker fetches pages network-first, as the handbook has it.
-11. **The no-hints test** (`tests/no-hints.test.ts`): build the site for every day from 9 to 25 December 2026 with `EURTH_BUILD_TIME` set to that day's midnight in Brussels, and run the scanner over every file of every build: HTML, scripts, JSON, the sitemap, `llms.txt`, the manifest, the service worker's file list, comments, island props, and the bytes of every image. Also: the 9 December build names no advent tool at all; each build's open doors are exactly the doors due; and the sharing image is byte-for-byte the same in all seventeen builds.
-12. **Workflows:** CI on every push and pull request (check, build, test; Lighthouse and axe on main). The nightly rebuild, on a schedule at 22:30 UTC from 8 to 24 December and by hand: it asks `clock.ts` for the plan, builds for midnight, runs the tests against that build, waits, deploys. Pushes to main deploy only from 9 December. The nightly @eurth/style update through the shared workflow.
+11. **The no-hints test** (`tests/no-hints.test.ts`; `tests/hub.test.ts` is its rehearsal on data): build the site for every day from 9 to 25 December 2026 with `EURTH_BUILD_TIME` set to that day's midnight in Brussels, and run the scanner over every file of every build: HTML, scripts, JSON, the sitemap, `llms.txt`, the manifest, the service worker's file list, comments, island props, and the bytes of every image. Also: the 9 December build names no advent tool at all; each build's open doors are exactly the doors due; and the sharing image is byte-for-byte the same in all seventeen builds.
+12. **Workflows:** CI on every push and pull request (today: check and test; then check, build, test, with Lighthouse and axe on main). The nightly rebuild, on a schedule at 22:30 UTC from 8 to 24 December and by hand: it asks `clock.ts` for the plan, builds for midnight, runs the tests against that build, waits, deploys. Pushes to main deploy only from 9 December. The nightly @eurth/style update through the shared workflow.
 13. **The handbook's checklist:** contrast, headers, privacy, spoilers, pages, launch (the standard suites), axe on every page, Lighthouse 100 in all four categories, both themes, keyboard throughout.
 14. **README** (use, development, deployment, the nightly run and how to run it by hand), `docs/feedback-log.md`, and this roadmap brought up to date.
 
@@ -75,6 +63,22 @@ Start from the starter template; the handbook decides everything shared. Develop
 - "Advent 2026" stays on the page all year; the calendar code takes a year, so a 2027 calendar is a new schedule and nothing else.
 - A feed (RSS) of the changelog.
 - The changelog filled by each tool's own releases, read at build time, in place of a file kept by hand.
+
+## 14 November 2026: groundwork
+
+Not a release: nothing is deployed, and there is no site. The logic, the data and the words, as plain TypeScript with 240 tests.
+
+- **Doors** (`src/hub/doors.ts`): the calendar at the build's moment. A locked door is its number and date and nothing else; the type has no field for a name. Open doors, today's door, and the three seasons: before, during, and after ("Advent 2026").
+- **Brussels time** (`brussels.ts`) and **the nightly clock** (`clock.ts`): days and midnights in Europe/Brussels on any machine; the plan for a run that starts now (build for midnight and wait, or build for now and deploy at once); the seventeen midnights from 9 to 25 December.
+- **The no-hints scanner** (`spoilers.ts`): finds a locked tool's address, pitch or name in any text, through HTML entities, JSON escapes and URL encoding, and in file paths. Names match as whole words with their capital, because several doors hide everyday words. Findings never repeat the secret. A short list of reviewed exceptions is possible; none is needed yet.
+- **Already live** (`live.ts`), **the changelog** (`changelog.ts`) and **Your nation** (`sections.ts` at build time, `nation.ts` in the browser), each giving the page only what is live.
+- **Everything a build may show, in one call** (`index.ts`, `hubAt()`), and a rehearsal of the no-hints test on it for every day from 9 to 25 December.
+- **The delights as decisions** (`delight.ts`): the "yurt" key sequence and when the door swings.
+- **Data:** `src/data/changelog.json` with 24 releases of Map, Newsroom, Governmint and Flagwright, from their own roadmaps; `src/data/sections.json` mapping the profile's sixteen sections to their tools.
+- **Words** (`src/content/copy.ts`): every heading, paragraph, label, title and description for the four pages, the 404 and `llms.txt`, checked by the scanner for every day.
+- **CI:** type check and tests on every push.
+
+Two changes from the mock-up, both for the no-hints rule: the home page's first paragraph no longer lists "coats of arms" (it is behind door 1), and "Your nation" counts sections for closed doors instead of naming them.
 
 ## Not planned
 

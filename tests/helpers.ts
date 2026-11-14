@@ -14,3 +14,8 @@ export function at(day: number, hour = 0, minute = 0, second = 0): Date {
 export function everythingIn(value: unknown): string {
   return JSON.stringify(value);
 }
+
+/** One tool of the snapshot by its id. */
+export function findTool(id: string): Tool | undefined {
+  return TOOLS.find((tool) => tool.id === id);
+}
