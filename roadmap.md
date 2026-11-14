@@ -11,7 +11,7 @@ Three parts: what comes next, what each release added (newest first), and what's
 **Next: Phase 3, the launch** (below). Before then, the things nobody has done yet:
 
 - **See it by eye.** The pages were checked in a browser through their text, structure and behaviour (the calendar, reading a profile, the "yurt" easter egg, phone width), and by axe and Lighthouse in CI, but not looked at as pictures, and the door's swing has not been watched. Run `npm run preview`, look at all four pages in both themes, and open the home page built for a day in advent: `EURTH_BUILD_TIME=2026-12-13T09:00:00+01:00 npm run preview`.
-- **The `CLOUDFLARE_API_TOKEN` organisation secret:** Stijn to confirm it is set for eurth-org. Without it the Advent run builds, warns and deploys nothing.
+- **The `CLOUDFLARE_API_TOKEN` organisation secret** is set for eurth-org (Stijn, 15 November 2026). Without it the Advent run would build, warn and deploy nothing.
 - **The redirect for worldbuilding.eurth.org:** Stijn, in Cloudflare (Phase 3).
 
 Raised with Foundations (@eurth/style and @eurth/profile), none of them blocking:
