@@ -4,3 +4,4 @@ dist/
 .wrangler/
 .lighthouseci/
 .DS_Store
+.no-hints/

@@ -1,0 +1,25 @@
+# Opens the doors. On the evening before each day from 9 to 25 December, at 22:30 UTC (23:30 in
+# Brussels), this builds the site as it will be at midnight, checks and tests that build
+# (including the no-hints test), waits for 00:00 Europe/Brussels and deploys. The first run, on
+# the 8th, puts the hub itself live; the last, on the 24th, builds the site for the 25th.
+#
+# By hand: if a scheduled run hasn't started by 22:45 UTC, start this one yourself (it refuses
+# more than two hours before midnight). If midnight has already passed, run Nightly instead: it
+# builds for the moment it runs and deploys if the site has changed.
+#
+# All of it lives in @eurth/style (ahead: true is the hub's setting), so there are no steps here.
+name: Advent
+
+on:
+  schedule:
+    - cron: '30 22 8-24 12 *'
+  workflow_dispatch:
+
+jobs:
+  advent:
+    permissions:
+      contents: write
+    uses: eurth-org/eurth-style/.github/workflows/tool-nightly.yml@v1
+    with:
+      ahead: true
+    secrets: inherit

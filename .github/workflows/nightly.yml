@@ -1,5 +1,7 @@
-# Each night, just after midnight in Brussels: update @eurth/style and @eurth/profile within
-# version 1, rebuild, test, and deploy if anything changed (never before the door has opened).
+# Each night, just after midnight in Brussels: update @eurth/style within version 1, rebuild for
+# the moment it runs, test, and deploy if the site differs from what is live (never before the
+# hub's own door has opened). In December this is also the safety net under Advent: if that run
+# was late or failed, this one opens the day's door ten minutes past midnight.
 name: Nightly
 
 on:
