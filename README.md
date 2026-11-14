@@ -8,7 +8,7 @@ Status: being built. Nothing is live yet; the hub opens on 9 December 2026. The 
 
 ## No cheating, no hints
 
-The site is rebuilt once a day, and each build contains only the doors that are open, decided by the build server's clock and never the visitor's. A locked door is in the build as its number and its date and nothing else: no name, address or description in any page, script, data file, sitemap, picture or comment. A test builds the site for every day from 9 to 25 December and checks exactly that.
+The site is rebuilt once a day, and each build contains only the doors that are open, decided by the build server's clock and never the visitor's. A locked door is in the build as its number and its date and nothing else: no name, address or description in any page, script, data file, sitemap, picture or comment. A test checks exactly that for every day from 9 to 25 December: today on the data the pages will be made from, and once there is a site, on every file of all seventeen builds.
 
 ## Where things live
 
