@@ -91,7 +91,8 @@
 
 <div class="nation eu-stack" class:nation--over={over}>
   <div class="eu-row nation-controls">
-    <input bind:this={picker} id="nation-file" class="eu-visually-hidden" type="file" accept=".json,application/json" onchange={(event) => take(event.currentTarget.files?.[0])} />
+    <!-- The picker itself stays out of sight and out of the tab order: the button opens it. -->
+    <input bind:this={picker} type="file" hidden aria-label={NATION.load} accept=".json,application/json" onchange={(event) => take(event.currentTarget.files?.[0])} />
     <button class="eu-btn eu-btn--primary" type="button" data-click="bounce" onclick={() => picker?.click()}>
       <Icon icon={faFolderOpen} />
       {NATION.load}
