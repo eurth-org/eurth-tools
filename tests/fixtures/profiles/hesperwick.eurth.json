@@ -1,0 +1,18 @@
+{
+  "meta": {
+    "schema": 1,
+    "nation": "Hesperwick",
+    "updated": "2026-11-02T18:40:12.000Z"
+  },
+  "flag": {
+    "link": "https://flag.eurth.org/#example-hesperwick",
+    "summary": "A white Nordic cross on sea green, with a gold border to the cross.",
+    "updated": "2026-11-02T18:40:12.000Z",
+    "ratio": "3:5",
+    "colours": [
+      "#1f6f5c",
+      "#ffffff",
+      "#e0b03a"
+    ]
+  }
+}

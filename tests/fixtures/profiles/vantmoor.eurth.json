@@ -1,0 +1,72 @@
+{
+  "meta": {
+    "schema": 1,
+    "nation": "Vantmoor",
+    "updated": "2026-11-09T08:15:00.000Z"
+  },
+  "identity": {
+    "link": "https://wiki.eurth.org/#example-vantmoor",
+    "updated": "2026-11-08T20:02:41.000Z",
+    "commonName": "Vantmoor",
+    "officialName": "Republic of Vantmoor",
+    "capital": "Marrowgate",
+    "demonym": "Vantmoorish",
+    "motto": "Steady as the fen",
+    "languages": [
+      "Vantmoorish"
+    ]
+  },
+  "flag": {
+    "link": "https://flag.eurth.org/#example-vantmoor",
+    "summary": "A pale moon on deep blue over a band of gold, for the fens at harvest.",
+    "updated": "2026-11-07T19:30:05.000Z",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 900 600\" role=\"img\" aria-label=\"Flag of Vantmoor\"><rect width=\"900\" height=\"600\" fill=\"#24415f\"/><rect y=\"400\" width=\"900\" height=\"200\" fill=\"#c9a227\"/><circle cx=\"300\" cy=\"200\" r=\"90\" fill=\"#f4efe1\"/></svg>",
+    "ratio": "2:3",
+    "colours": [
+      "#24415f",
+      "#c9a227",
+      "#f4efe1"
+    ]
+  },
+  "government": {
+    "link": "https://gov.eurth.org/#example-vantmoor",
+    "summary": "A presidential republic. The president is elected every five years and leads the government; the Common Assembly makes the laws.",
+    "updated": "2026-11-08T19:44:10.000Z",
+    "form": "Presidential republic",
+    "headOfState": "President Ines Tarrow",
+    "headOfGovernment": "President Ines Tarrow",
+    "legislature": "Common Assembly"
+  },
+  "stats": {
+    "link": "https://stats.eurth.org/#example-vantmoor",
+    "updated": "2026-11-09T08:15:00.000Z",
+    "population": 3950000,
+    "areaKm2": 61200,
+    "gdpUsd": 87400000000,
+    "lifeExpectancy": 78.2
+  },
+  "cities": {
+    "link": "https://cities.eurth.org/#example-vantmoor",
+    "updated": "2026-11-09T08:02:33.000Z",
+    "urbanisation": 58,
+    "list": [
+      {
+        "name": "Marrowgate",
+        "population": 641000,
+        "capital": true
+      },
+      {
+        "name": "Sedgewick Ferry",
+        "population": 320500
+      },
+      {
+        "name": "Oldreach",
+        "population": 213700
+      },
+      {
+        "name": "Tamsel",
+        "population": 160200
+      }
+    ]
+  }
+}

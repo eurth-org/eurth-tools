@@ -1,0 +1,21 @@
+{
+  "$comment": "The sections of the Eurth nation profile (<nation>.eurth.json, see eurth-org/eurth-profile) and the tool that writes each, for 'Your nation' on tools.eurth.org. section: the key in the file. label: what the page calls it. tool: the id in @eurth/style's tools.json. always: shown even before its tool is live, because the section gives nothing away. The build hands the page only the sections whose tools have launched; the rest are counted, never named. Please don't spoil the doors.",
+  "sections": [
+    { "section": "identity", "label": "Identity", "tool": "wiki", "always": true },
+    { "section": "flag", "label": "Flag", "tool": "flag" },
+    { "section": "arms", "label": "Coat of arms", "tool": "arms" },
+    { "section": "government", "label": "Government", "tool": "gov" },
+    { "section": "seats", "label": "Parliament", "tool": "seats" },
+    { "section": "names", "label": "Naming language", "tool": "names" },
+    { "section": "stats", "label": "Statistics", "tool": "stats" },
+    { "section": "dynasty", "label": "Ruling house", "tool": "dynasty" },
+    { "section": "calendar", "label": "Calendar", "tool": "cal" },
+    { "section": "timeline", "label": "Timeline", "tool": "time" },
+    { "section": "bank", "label": "Currency", "tool": "bank" },
+    { "section": "passport", "label": "Passport", "tool": "passport" },
+    { "section": "rank", "label": "Ranks", "tool": "rank" },
+    { "section": "cities", "label": "Cities", "tool": "cities" },
+    { "section": "anthem", "label": "Anthem", "tool": "anthem" },
+    { "section": "wiki", "label": "Wiki page", "tool": "wiki" }
+  ]
+}

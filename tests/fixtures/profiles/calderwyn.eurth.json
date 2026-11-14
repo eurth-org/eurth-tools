@@ -1,0 +1,334 @@
+{
+  "meta": {
+    "schema": 1,
+    "nation": "Calderwyn",
+    "updated": "2026-11-13T21:05:44.000Z"
+  },
+  "identity": {
+    "link": "https://wiki.eurth.org/#example-calderwyn",
+    "summary": "Calderwyn is a seafaring kingdom of river towns and lantern-lit harbours, joined under one crown since 1412.",
+    "updated": "2026-11-12T17:20:00.000Z",
+    "commonName": "Calderwyn",
+    "officialName": "Kingdom of Calderwyn",
+    "capital": "Haldermouth",
+    "demonym": "Calderwynian",
+    "motto": "By tide and by lantern",
+    "languages": [
+      "Calderwynian",
+      "Low Eskish"
+    ]
+  },
+  "flag": {
+    "link": "https://flag.eurth.org/#example-calderwyn",
+    "summary": "A gold lantern-disc on sea blue, crossed by a white and gold band for the river Calder.",
+    "updated": "2026-11-03T10:11:12.000Z",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 900 600\" role=\"img\" aria-label=\"Flag of Calderwyn\"><rect width=\"900\" height=\"600\" fill=\"#123a5a\"/><rect y=\"250\" width=\"900\" height=\"100\" fill=\"#f2f0e6\"/><rect y=\"275\" width=\"900\" height=\"50\" fill=\"#d9a520\"/><circle cx=\"450\" cy=\"300\" r=\"120\" fill=\"#123a5a\"/><circle cx=\"450\" cy=\"300\" r=\"70\" fill=\"#d9a520\"/></svg>",
+    "ratio": "2:3",
+    "colours": [
+      "#123a5a",
+      "#f2f0e6",
+      "#d9a520"
+    ]
+  },
+  "arms": {
+    "link": "https://arms.eurth.org/#example-calderwyn",
+    "updated": "2026-11-04T14:48:30.000Z",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 200 240\" role=\"img\" aria-label=\"Arms of Calderwyn\"><path d=\"M10 10H190V110C190 180 140 215 100 232C60 215 10 180 10 110Z\" fill=\"#123a5a\" stroke=\"#0b0b0b\" stroke-width=\"3\"/><rect x=\"10\" y=\"60\" width=\"180\" height=\"14\" fill=\"#f2f0e6\"/><rect x=\"10\" y=\"160\" width=\"180\" height=\"14\" fill=\"#f2f0e6\"/><rect x=\"84\" y=\"92\" width=\"32\" height=\"48\" rx=\"6\" fill=\"#d9a520\"/></svg>",
+    "blazon": "Azure, a lantern Or between two bars argent"
+  },
+  "government": {
+    "link": "https://gov.eurth.org/#example-calderwyn",
+    "summary": "A constitutional monarchy. The Queen reigns and the First Minister governs, answerable to the Moot, which is elected every four years.",
+    "updated": "2026-11-05T09:00:00.000Z",
+    "form": "Parliamentary constitutional monarchy",
+    "headOfState": "Queen Ysolde III",
+    "headOfGovernment": "First Minister Corin Ashdale",
+    "legislature": "The Moot"
+  },
+  "seats": {
+    "link": "https://seats.eurth.org/#example-calderwyn",
+    "summary": "The Lantern Party and Greenwater govern together with 72 of 151 seats, as a minority.",
+    "updated": "2026-11-05T09:32:18.000Z",
+    "chamber": "The Moot",
+    "total": 151,
+    "system": "Sainte-Laguë",
+    "election": "General election of 2025",
+    "parties": [
+      {
+        "name": "Lantern Party",
+        "seats": 58,
+        "colour": "#d9a520"
+      },
+      {
+        "name": "Harbour Union",
+        "seats": 44,
+        "colour": "#123a5a"
+      },
+      {
+        "name": "Upland League",
+        "seats": 27,
+        "colour": "#7a4b2a"
+      },
+      {
+        "name": "Greenwater",
+        "seats": 14,
+        "colour": "#3a8f5c"
+      },
+      {
+        "name": "Independents",
+        "seats": 8,
+        "colour": "#8a8f94"
+      }
+    ]
+  },
+  "names": {
+    "link": "https://names.eurth.org/#example-calderwyn",
+    "updated": "2026-11-06T11:15:00.000Z",
+    "language": "Calderwynian",
+    "places": [
+      "Haldermouth",
+      "Wynmere",
+      "Tarrowby",
+      "Eskerholt",
+      "Corvane",
+      "Larkenfold",
+      "Dunmarrow"
+    ],
+    "people": [
+      "Ysolde",
+      "Edric",
+      "Liane",
+      "Tobin",
+      "Corin",
+      "Maud",
+      "Alaric"
+    ],
+    "surnames": [
+      "Maravel",
+      "Ashdale",
+      "Fenwright",
+      "Holloway",
+      "Tarn",
+      "Quillon"
+    ]
+  },
+  "stats": {
+    "link": "https://stats.eurth.org/#example-calderwyn",
+    "summary": "A small, well-off trading nation: all six numbers are within real-world ranges.",
+    "updated": "2026-11-07T16:45:09.000Z",
+    "population": 12480000,
+    "areaKm2": 148300,
+    "gdpUsd": 512000000000,
+    "gdpGrowth": 1.8,
+    "lifeExpectancy": 80.6,
+    "activeMilitary": 38500
+  },
+  "dynasty": {
+    "link": "https://dynasty.eurth.org/#example-calderwyn",
+    "updated": "2026-11-08T13:27:51.000Z",
+    "house": "House of Maravel",
+    "law": "Absolute primogeniture",
+    "monarch": "Queen Ysolde III",
+    "heir": "Prince Edric",
+    "succession": [
+      "Prince Edric",
+      "Princess Liane",
+      "Prince Tobin",
+      "Duke Alaric of Wynmere"
+    ]
+  },
+  "calendar": {
+    "link": "https://cal.eurth.org/#example-calderwyn",
+    "updated": "2026-11-09T19:03:00.000Z",
+    "name": "Lantern Reckoning",
+    "daysPerYear": 365,
+    "months": [
+      {
+        "name": "Frostwane",
+        "days": 31
+      },
+      {
+        "name": "Thawing",
+        "days": 28
+      },
+      {
+        "name": "Seedfall",
+        "days": 31
+      },
+      {
+        "name": "Rainmoot",
+        "days": 30
+      },
+      {
+        "name": "Blossom",
+        "days": 31
+      },
+      {
+        "name": "Highsun",
+        "days": 30
+      },
+      {
+        "name": "Goldgrain",
+        "days": 31
+      },
+      {
+        "name": "Reaping",
+        "days": 31
+      },
+      {
+        "name": "Mistfall",
+        "days": 30
+      },
+      {
+        "name": "Leafwane",
+        "days": 31
+      },
+      {
+        "name": "Emberdusk",
+        "days": 30
+      },
+      {
+        "name": "Longnight",
+        "days": 31
+      }
+    ],
+    "weekdays": [
+      "Sunday",
+      "Moonday",
+      "Tideday",
+      "Windday",
+      "Hearthday",
+      "Fieldday",
+      "Restday"
+    ],
+    "era": "LR"
+  },
+  "timeline": {
+    "link": "https://time.eurth.org/#example-calderwyn",
+    "updated": "2026-11-10T20:40:00.000Z",
+    "title": "History of Calderwyn",
+    "startYear": 1180,
+    "endYear": 2026,
+    "events": [
+      {
+        "year": 1184,
+        "title": "Haldermouth is founded at the mouth of the Calder"
+      },
+      {
+        "year": 1412,
+        "title": "The crowns of Calder and Wyn are joined"
+      },
+      {
+        "year": 1689,
+        "title": "The Lantern Charter puts the crown under the law"
+      },
+      {
+        "year": 1871,
+        "title": "The first railway runs from Haldermouth to Wynmere"
+      },
+      {
+        "year": 1953,
+        "title": "Every adult gets the vote"
+      }
+    ]
+  },
+  "bank": {
+    "link": "https://bank.eurth.org/#example-calderwyn",
+    "updated": "2026-11-11T08:30:00.000Z",
+    "currency": "Calder mark",
+    "code": "CWM",
+    "issuer": "Royal Bank of Calderwyn",
+    "denominations": [
+      200,
+      100,
+      50,
+      20,
+      10,
+      5
+    ]
+  },
+  "passport": {
+    "link": "https://passport.eurth.org/#example-calderwyn",
+    "updated": "2026-11-11T08:52:00.000Z",
+    "colour": "#123a5a"
+  },
+  "rank": {
+    "link": "https://rank.eurth.org/#example-calderwyn",
+    "updated": "2026-11-11T09:10:00.000Z",
+    "branches": [
+      "Army",
+      "Navy",
+      "Air Force"
+    ],
+    "ranks": [
+      {
+        "name": "General",
+        "branch": "Army"
+      },
+      {
+        "name": "Colonel",
+        "branch": "Army"
+      },
+      {
+        "name": "Sergeant",
+        "branch": "Army"
+      },
+      {
+        "name": "Admiral",
+        "branch": "Navy"
+      },
+      {
+        "name": "Captain",
+        "branch": "Navy"
+      },
+      {
+        "name": "Air Marshal",
+        "branch": "Air Force"
+      }
+    ]
+  },
+  "cities": {
+    "link": "https://cities.eurth.org/#example-calderwyn",
+    "summary": "Seven in ten Calderwynians live in towns; one in five of those lives in Haldermouth.",
+    "updated": "2026-11-12T12:00:00.000Z",
+    "urbanisation": 71,
+    "list": [
+      {
+        "name": "Haldermouth",
+        "population": 1840000,
+        "capital": true
+      },
+      {
+        "name": "Wynmere",
+        "population": 920000
+      },
+      {
+        "name": "Tarrowby",
+        "population": 613000
+      },
+      {
+        "name": "Eskerholt",
+        "population": 460000
+      },
+      {
+        "name": "Corvane",
+        "population": 368000
+      },
+      {
+        "name": "Larkenfold",
+        "population": 307000
+      }
+    ]
+  },
+  "anthem": {
+    "link": "https://anthem.eurth.org/#example-calderwyn",
+    "updated": "2026-11-13T21:05:44.000Z",
+    "title": "Lanterns on the Water",
+    "lyrics": "Where the Calder meets the morning\nAnd the harbour bells begin,\nEvery lantern keeps its promise:\nGuide the weary sailor in.\n\nFrom the uplands to the tide-line,\nField and ferry, hearth and quay,\nOne the light and one the river,\nCalderwyn, we sing to thee."
+  },
+  "wiki": {
+    "link": "https://wiki.eurth.org/#example-calderwyn",
+    "updated": "2026-11-12T17:20:00.000Z",
+    "drivesOn": "left"
+  }
+}

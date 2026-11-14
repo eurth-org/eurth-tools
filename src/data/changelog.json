@@ -1,0 +1,236 @@
+{
+  "$comment": "Every release of every Eurth tool, for tools.eurth.org/changelog. Newest first. tool: the id in @eurth/style's tools.json. date: the Brussels day, YYYY-MM-DD; time (HH:MM) where it is known. Releases of one day are shown in this file's order, so keep the newest on top. title: sentence case, no full stop. notes: a sentence each. A release shows only once its tool has launched and its day has come, and is held back while it mentions a tool whose door is still closed, so entries can be written ahead. Please don't spoil the doors.",
+  "releases": [
+    {
+      "tool": "flag",
+      "date": "2026-11-12",
+      "version": "0.1.0",
+      "title": "Flagwright opens as a preview",
+      "notes": [
+        "Simple mode makes a flag in four choices: 22 divisions, 16 overlays, 10 drawn symbols and 137 emblems.",
+        "Advanced mode places every layer by hand: up to 60 layers of 19 kinds, with guides and snapping.",
+        "A design check scores each flag out of ten against the principles of flag design, and spots lookalikes of some 30 real flags.",
+        "Download as SVG, PNG or WebP, copy the picture, the description or the link. The link holds the whole flag.",
+        "18 templates, a guide to the five principles and a glossary of 36 flag terms."
+      ]
+    },
+    {
+      "tool": "gov",
+      "date": "2026-11-10",
+      "title": "A count of the countries minted",
+      "notes": [
+        "The header counts the countries minted so far. A country counts when someone saves, copies, shares or exports it, once a visit; the page sends only \"one more\"."
+      ]
+    },
+    {
+      "tool": "gov",
+      "date": "2026-11-10",
+      "time": "10:56",
+      "title": "Governmint works offline",
+      "notes": [
+        "After the first visit a copy of the site stays on the device, so Governmint opens without signal, and a \"No signal\" note says so.",
+        "The light and dark switch grows its circle both ways.",
+        "The bottom bar's icons draw their outlines, then fill in, when pointed at."
+      ]
+    },
+    {
+      "tool": "news",
+      "date": "2026-10-31",
+      "title": "Pictures for stories without a photo",
+      "notes": [
+        "Stories without a photo get a topic image, in link previews and in structured data."
+      ]
+    },
+    {
+      "tool": "news",
+      "date": "2026-10-31",
+      "time": "22:55",
+      "title": "Structured data for every story",
+      "notes": [
+        "Search engines can read the site's name and every story as a news article."
+      ]
+    },
+    {
+      "tool": "news",
+      "date": "2026-10-31",
+      "time": "22:18",
+      "title": "A news sitemap",
+      "notes": [
+        "A news sitemap, checked on every build, and a robots.txt."
+      ]
+    },
+    {
+      "tool": "gov",
+      "date": "2026-10-30",
+      "time": "14:12",
+      "title": "The Eurth coin as icon and logo",
+      "notes": [
+        "The Eurth coin is the favicon and the app icon, with a web app manifest.",
+        "The coin replaces the turning globe as the logo in the header and as the way back to the top."
+      ]
+    },
+    {
+      "tool": "news",
+      "date": "2026-10-30",
+      "time": "02:38",
+      "title": "Orioni mode moves to the footer",
+      "notes": [
+        "Orioni mode is a button in the footer that works as a switch.",
+        "Periodical covers are shown uncropped and tilt when pointed at."
+      ]
+    },
+    {
+      "tool": "news",
+      "date": "2026-10-29",
+      "time": "23:52",
+      "title": "Animated icons and footer columns",
+      "notes": [
+        "Animated line icons, placeholder images, footer columns with periodicals and smooth scrolling."
+      ]
+    },
+    {
+      "tool": "news",
+      "date": "2026-10-29",
+      "time": "23:20",
+      "title": "A disclaimer for borrowed images",
+      "notes": [
+        "A disclaimer for images members take from other websites."
+      ]
+    },
+    {
+      "tool": "news",
+      "date": "2026-10-29",
+      "time": "21:25",
+      "title": "Copyright and an automatic theme",
+      "notes": [
+        "A copyright notice, a theme that follows the device, a clock with seconds, a search icon and footer links."
+      ]
+    },
+    {
+      "tool": "gov",
+      "date": "2026-10-29",
+      "time": "20:47",
+      "title": "The Eurth coin, and a stricter security policy",
+      "notes": [
+        "The Eurth coin, with the yurt embossed, on the name card, in the bursts and on the sharing image.",
+        "A strict Content-Security-Policy and a Permissions-Policy.",
+        "A privacy line: no analytics, no trackers, no cookies, no data to sell."
+      ]
+    },
+    {
+      "tool": "gov",
+      "date": "2026-10-29",
+      "time": "20:21",
+      "title": "Budget locks and more exports",
+      "notes": [
+        "Budget locks, with an angry slider when the locks leave no room, and wider treemap tiles.",
+        "The budget and the compass as Markdown, with a chart, and as JSON."
+      ]
+    },
+    {
+      "tool": "gov",
+      "date": "2026-10-29",
+      "time": "19:10",
+      "title": "An export panel and pictures of every chart",
+      "notes": [
+        "An Export panel with JSON, and WebP and Copy image for every chart.",
+        "Toolbars for the budget and the compass."
+      ]
+    },
+    {
+      "tool": "gov",
+      "date": "2026-10-29",
+      "time": "17:42",
+      "title": "Sharing, and famous nations for the dice",
+      "notes": [
+        "A sharing image for link previews, and a share window for the Eurth forum and nine other places.",
+        "Famous fictional nations for Random, and real countries recognised by name."
+      ]
+    },
+    {
+      "tool": "gov",
+      "date": "2026-10-29",
+      "time": "16:21",
+      "title": "Random, save, undo and redo",
+      "notes": [
+        "Random, Save, Undo and Redo, real flags and keyboard shortcuts.",
+        "The budget's legend and treemap, sixteen new delights and a 404 page."
+      ]
+    },
+    {
+      "tool": "gov",
+      "date": "2026-10-29",
+      "time": "15:21",
+      "title": "Chart downloads and a budget pie",
+      "notes": [
+        "Chart downloads, a budget pie, a compass that groups and enlarges, and search within the page.",
+        "Eurth blue, Wikipedia links, a one-sentence summary and small delights."
+      ]
+    },
+    {
+      "tool": "gov",
+      "date": "2026-10-29",
+      "time": "14:18",
+      "title": "Real countries, a spider chart and a compass",
+      "notes": [
+        "197 real countries and a picker, scales you can drag, a spider chart and a compass.",
+        "Markdown and wikitext exports, the Deluminator switch and the budget."
+      ]
+    },
+    {
+      "tool": "news",
+      "date": "2026-10-29",
+      "time": "11:33",
+      "title": "Accessible in every look",
+      "notes": [
+        "WCAG 2.2 AAA in every look and state, a light and dark switch, arrival animations and Orioni mode."
+      ]
+    },
+    {
+      "tool": "gov",
+      "date": "2026-10-29",
+      "time": "11:32",
+      "title": "Governmint opens as a preview",
+      "notes": [
+        "Mint a government from its settings, with 18 examples, checks for contradictions and the whole design kept in the link.",
+        "Live at gov.eurth.org."
+      ]
+    },
+    {
+      "tool": "news",
+      "date": "2026-10-29",
+      "time": "11:07",
+      "title": "A globe, a local clock and a section bar",
+      "notes": [
+        "A globe, a clock in your own zone, a sticky section bar with search and a menu for phones."
+      ]
+    },
+    {
+      "tool": "news",
+      "date": "2026-10-29",
+      "time": "10:19",
+      "title": "A front page for the Newsroom",
+      "notes": [
+        "Headlines read from each post, a lead story and a grid, Most read, a filter by nation, search, a reader and a page for every story.",
+        "Link previews, and the look of the Eurth design system."
+      ]
+    },
+    {
+      "tool": "news",
+      "date": "2026-09-28",
+      "title": "The Newsroom opens",
+      "notes": [
+        "A paper-style page and an RSS feed of the 25 newest stories from the Newsroom forum."
+      ]
+    },
+    {
+      "tool": "map",
+      "date": "2026-09-09",
+      "title": "The map opens",
+      "notes": [
+        "The world of Eurth as a map you can zoom, with a minimap and distances measured in metres.",
+        "Layers for climate, ocean currents and tectonic plates."
+      ]
+    }
+  ]
+}
