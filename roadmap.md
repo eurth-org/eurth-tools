@@ -9,7 +9,7 @@ Three parts: what comes next, what each release added (newest first), and what's
 **15 November 2026. The hub is live at tools.eurth.org,** with fifteen locked doors, the four live tools, "Your nation" and the other pages. Stijn opened it three weeks ahead of the planned 9 December: first by hand (`npx wrangler deploy` from a build made, tested and searched that day), then by moving the hub's launch to 15 November in @eurth/style's `tools.json` (release 1.2.1) and in `LAUNCH_AT` here.
 
 - **The workflows deploy now.** A green push to `main` is deployed, and Nightly (23:10 UTC) rebuilds and deploys when the site has changed. Advent takes over the midnights from 8 December.
-- **The other tools link to the hub** from their next nightly run: "All tools" in the header and the footer.
+- **Who links to the hub.** Every site on the shared shell shows "All tools" in its header and footer from its next build: style.eurth.org does already. Flagwright and Governmint still carry their own header and footer on `main` (each has a `shared-shell` branch waiting for Stijn), so they link to the hub once that is merged.
 - **The handbook's rule** that a site doesn't exist before its door still holds for every tool behind a door, and the hub's builds still hold nothing about them.
 
 **Next: Phase 3** (below): the redirect, and then the calendar itself from 9 December.
