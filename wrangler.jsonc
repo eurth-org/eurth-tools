@@ -8,7 +8,7 @@
   // The Cloudflare account that holds the eurth.org zone. Not a secret.
   "account_id": "0954ead81ed9fd06d343580d95902280",
   "compatibility_date": "2026-11-01",
-  // No workers.dev address: until 9 December the site doesn't exist anywhere.
+  // No workers.dev address and no preview addresses: tools.eurth.org is the only place it lives.
   "workers_dev": false,
   "preview_urls": false,
   "assets": {
@@ -16,7 +16,6 @@
     "not_found_handling": "404-page",
     "html_handling": "auto-trailing-slash"
   },
-  // Deploying creates this custom domain, DNS record included: so before the door only the
-  // nightly workflow deploys, and it waits for midnight.
+  // Deploying creates this custom domain, DNS record included (first done on 15 November 2026).
   "routes": [{ "pattern": "tools.eurth.org", "custom_domain": true }]
 }

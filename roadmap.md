@@ -1,18 +1,24 @@
 # Roadmap
 
-The hub is the front door for Eurth's free worldbuilding tools, at tools.eurth.org: one page that lists every tool, an advent calendar that opens one new tool a day from 10 to 24 December 2026, a changelog for the whole suite, and a place to drop your nation's profile file and see what you have filled in. It goes live on 9 December 2026 at 00:00 Europe/Brussels.
+The hub is the front door for Eurth's free worldbuilding tools, at tools.eurth.org: one page that lists every tool, an advent calendar that opens one new tool a day from 10 to 24 December 2026, a changelog for the whole suite, and a place to drop your nation's profile file and see what you have filled in. It has been live since 15 November 2026; the other tools start pointing to it on 9 December.
 
 Three parts: what comes next, what each release added (newest first), and what's not planned.
 
 ## Where to pick up
 
-**15 November 2026.** The site is built and CI is green: type check, build, tests (including the no-hints test over seventeen builds), axe on every page in both themes, and Lighthouse. Nothing is deployed, on purpose: the hub's door opens on 9 December, and the Advent workflow opens it.
+**15 November 2026. The hub is live at tools.eurth.org,** three weeks ahead of its door, deployed by hand on Stijn's word (`npx wrangler deploy` from a build made, tested and searched that day, with @eurth/style 1.2.0). It shows fifteen locked doors, the four live tools, "Your nation" and the other pages. Checked after the deploy: every page answers, the live files match the build, and the page runs in a browser with no errors.
 
-**Next: Phase 3, the launch** (below). Before then, the things nobody has done yet:
+What that changes until 9 December:
 
-- **Seen by eye, in headless Chrome** (15 November): the home page in both themes and at phone width, the advent, changelog and about pages, and the door caught mid-swing, all from a build for 13 December. Still worth a look by a person on a real phone before the 9th: `EURTH_BUILD_TIME=2026-12-13T09:00:00+01:00 npm run preview`.
+- **The workflows still wait for the door.** `LAUNCH_AT` and `tools.json` say 9 December, so a push to `main` and the Nightly run are checked and tested but not deployed. The live site stays as it was built on 15 November until the Advent run of 8 December, unless someone deploys by hand again (README, Deployment).
+- **No other site mentions the hub yet.** The Tools menus and footers of the other tools read the same `tools.json` and add the hub on 9 December. Moving the hub's date there is a change to @eurth/style, and Stijn's to ask for.
+- **The handbook says a site doesn't exist before its door.** The hub's early start is Stijn's exception, for the hub alone; every tool behind a door keeps to the rule, and the hub's builds still hold nothing about them.
+
+**Next: Phase 3** (below): the redirect, and then the calendar itself from 8 December.
+
+- **Seen by eye, in headless Chrome** (15 November): the home page in both themes and at phone width, the advent, changelog and about pages, and the door caught mid-swing, all from a build for 13 December. Still worth a look by a person on a real phone, now on the live site.
 - **The `CLOUDFLARE_API_TOKEN` organisation secret** is set for eurth-org (Stijn, 15 November 2026). Without it the Advent run would build, warn and deploy nothing.
-- **The redirect for worldbuilding.eurth.org:** Stijn, in Cloudflare (Phase 3).
+- **The redirect for worldbuilding.eurth.org:** Stijn, in Cloudflare (Phase 3). It has somewhere to land now.
 
 Raised with Foundations (@eurth/style and @eurth/profile), none of them blocking:
 
@@ -36,8 +42,8 @@ Confirmed by Stijn on 14 November 2026.
 ### Phase 3: launch
 
 - **worldbuilding.eurth.org.** A second custom domain on the Worker would serve a copy of the site, not a redirect, and a Worker script that redirects would use Worker requests. A Cloudflare Redirect Rule is free and uses none. Stijn to add: a proxied DNS record for `worldbuilding` (AAAA `100::`) and a Single Redirect from `worldbuilding.eurth.org/*` to `https://tools.eurth.org/` (301).
-- **8 December, 22:30 UTC:** the first Advent run builds the site for the 9th and deploys it at midnight, which creates the custom domain. If it hasn't started by 22:45 UTC, start Advent by hand; if midnight has passed, start Nightly by hand.
-- **After launch:** submit the sitemap in Search Console, add the hub to status.eurth.org, announce on the forum and Discord.
+- **Now that the site is live:** submit the sitemap in Search Console and add the hub to status.eurth.org. Announcing it on the forum and Discord is Stijn's to time.
+- **8 December, 22:30 UTC:** the first Advent run builds the site for the 9th and deploys it at midnight; from then on the workflows deploy on their own. If it hasn't started by 22:45 UTC, start Advent by hand; if midnight has passed, start Nightly by hand.
 - **Each morning, 10 to 25 December:** a look at the Advent run and the new door.
 - **After 25 December:** delete `.github/workflows/advent.yml`; Nightly carries on alone.
 
@@ -47,9 +53,9 @@ Confirmed by Stijn on 14 November 2026.
 - A feed (RSS) of the changelog.
 - The changelog filled by each tool's own releases, read at build time, in place of a file kept by hand.
 
-## 15 November 2026: the site (0.1.0, not deployed)
+## 15 November 2026: the site (0.1.0), live the same day
 
-Built from the @eurth/style 1.0.0 starter. It goes live on 9 December 2026, by the Advent workflow.
+Built from the @eurth/style 1.0.0 starter and deployed by hand to tools.eurth.org on 15 November 2026, ahead of the hub's door on 9 December (see "Where to pick up"). The Advent workflow takes over on 8 December.
 
 - **Home:** "Free worldbuilding tools" and one paragraph; the advent calendar; "Already live"; "Your nation"; one Join Eurth call to action. Real HTML from the build, so it reads with JavaScript off; only reading a profile file needs script, and says so.
 - **The calendar:** fifteen doors in a list, five across (three on a tablet, two on a phone). Locked: its number, a lock and "Opens 14 Dec". Open: its number and date, "Open", and the tool's name, pitch and address as one link. Today's door: a ring and the words "Open today". After the 24th the heading becomes "Advent 2026".
