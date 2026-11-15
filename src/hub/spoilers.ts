@@ -78,9 +78,14 @@ export function secretsAt(tools: readonly Tool[], at: Date, self = 'tools'): Sec
 
 const ENTITIES: Record<string, string> = { amp: '&', quot: '"', apos: "'", lt: '<', gt: '>', nbsp: ' ', rsquo: "'", lsquo: "'" };
 
-/** HTML entities and JSON escapes turned back into the characters they stand for. */
+/**
+ * HTML entities and JSON escapes turned back into the characters they stand for, and the
+ * invisible places a word may break (<wbr>, soft hyphens, zero-width spaces) taken out, so a
+ * name or an address can't hide by being split where nobody sees it.
+ */
 export function decode(text: string): string {
   return text
+    .replace(/<wbr\b[^>]*>|&shy;|&ZeroWidthSpace;|&#(?:173|8203|x0*ad|x0*200b);|[\u00ad\u200b]/gi, '')
     .replace(/\\u([0-9a-fA-F]{4})/g, (_, hex: string) => String.fromCharCode(parseInt(hex, 16)))
     .replace(/\\(["'/])/g, '$1')
     .replace(/&#x([0-9a-fA-F]{1,6});/g, (whole, hex: string) => fromCodePoint(parseInt(hex, 16), whole))

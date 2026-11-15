@@ -49,7 +49,18 @@ const Heading = `h${level}` as 'h1' | 'h2';
               </span>
               <span class="door-name">{door.name}</span>
               <span class="door-pitch">{door.pitch}</span>
-              <span class="door-host eu-data">{door.host}</span>
+              <span class="door-host eu-data">
+                {door.host.split('.').map((part, i) => (
+                  <>
+                    {i > 0 && (
+                      <>
+                        .<wbr />
+                      </>
+                    )}
+                    {part}
+                  </>
+                ))}
+              </span>
             </a>
           </li>
         ) : (
@@ -100,13 +111,26 @@ const Heading = `h${level}` as 'h1' | 'h2';
 
   .doors {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(calc(var(--space-16) * 2.5), 1fr));
+    /* Fifteen doors: three rows of five, five rows of three on a tablet, two across on a phone. */
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: var(--space-3);
     margin: 0;
     padding: 0;
     list-style: none;
     /* Room for a door to swing towards the reader. */
     perspective: calc(var(--space-16) * 12);
+  }
+
+  @media (max-width: 900px) {
+    .doors {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 520px) {
+    .doors {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
   }
 
   .doors li {
@@ -192,7 +216,8 @@ const Heading = `h${level}` as 'h1' | 'h2';
     margin-top: auto;
     padding-top: var(--space-2);
     color: var(--accent-text);
-    overflow-wrap: anywhere;
+    /* A long address breaks after a dot (the markup offers the places), not mid-word. */
+    overflow-wrap: break-word;
   }
 
   /* The signature touch: the first time today's door is on screen in a visit, a closed leaf

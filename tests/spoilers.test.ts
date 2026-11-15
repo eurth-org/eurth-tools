@@ -35,6 +35,13 @@ describe('addresses', () => {
     expect(kindsFound('https%3A%2F%2Fcal.eurth.org', secret('cal'))).toEqual(['address door 7']);
   });
 
+  it('are found when split at an invisible break', () => {
+    expect(kindsFound('dynasty.<wbr>eurth.<wbr />org', secret('dynasty'))).toEqual(['address door 6']);
+    expect(kindsFound('dynasty.<wbr data-astro-cid-g47lu57g>eurth.<wbr data-astro-cid-g47lu57g>org', secret('dynasty'))).toEqual(['address door 6']);
+    expect(kindsFound('dyn&shy;asty.eurth.org and dynasty.\u200beurth.org', secret('dynasty'))).toEqual(['address door 6', 'address door 6']);
+    expect(kindsFound('Dyn\u00adasty and Dy&#173;nasty and Dyn&#x200B;asty', secret('dynasty'))).toEqual(['name door 6', 'name door 6', 'name door 6']);
+  });
+
   it('are not confused with the addresses of open tools', () => {
     expect(kindsFound('https://flag.eurth.org https://tools.eurth.org https://eurth.org')).toEqual([]);
   });

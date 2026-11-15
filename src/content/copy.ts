@@ -178,7 +178,7 @@ export function aboutCopy({ github }: { github: boolean }): { title: string; des
         heading: 'Free forever',
         paragraphs: [
           'No ads, no analytics, no trackers, no cookies and no accounts. Nothing you make is stored on a server, because there is no server to store it on: every tool is a set of files that runs in your browser.',
-          'What you make lives in its link, which holds the whole design, and in your nation profile: one small file on your own device that you carry from tool to tool. Saving never means our storage, or your browser’s.',
+          "What you make lives in its link, which holds the whole design, and in your nation profile: one small file on your own device that you carry from tool to tool. Saving never means our storage, or your browser's.",
           'There is nothing to buy and nobody to pay. The tools are a gift, made for fiction and fun.',
         ],
       },
