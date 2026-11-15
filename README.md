@@ -60,13 +60,12 @@ npm run images    # the sharing image and icons, with the Chrome on this machine
 
 ## Deployment
 
-The hub is static files served by a Cloudflare Worker with no script (`wrangler.jsonc`), on tools.eurth.org. It was first deployed by hand on 15 November 2026; the workflows below deploy from the hub's own date in `LAUNCH_AT`, 9 December 2026.
+The hub is static files served by a Cloudflare Worker with no script (`wrangler.jsonc`), on tools.eurth.org. It has been live since 15 November 2026, the date in `LAUNCH_AT` and in @eurth/style's `tools.json`.
 
-- **Advent** (`.github/workflows/advent.yml`) runs at 22:30 UTC on 8 to 24 December: it builds the site as it will be at midnight in Brussels, checks and tests that build, waits for 00:00 and deploys. From the run on the 8th the workflows deploy on their own.
+- **Advent** (`.github/workflows/advent.yml`) runs at 22:30 UTC on 8 to 24 December: it builds the site as it will be at midnight in Brussels, checks and tests that build, waits for 00:00 and deploys. A run that changes nothing deploys nothing.
 - **Nightly** (`nightly.yml`) runs at 23:10 UTC every day: it updates @eurth/style within version 1, builds for the moment it runs, and deploys if the site differs from what is live.
-- **CI** (`ci.yml`) checks every push; from 9 December, a green push to `main` is deployed.
-- **By hand, in December:** if Advent hasn't started by 22:45 UTC, start it from the Actions tab. If midnight has already passed, start Nightly instead.
-- **By hand, before 9 December:** the workflows deploy nothing yet, so a change reaches the live site only from a machine signed in to Cloudflare: `npm run check && npm run build && npm test && npm run axe`, then `npx wrangler deploy`. The tests search that build for hints, so never deploy one they haven't passed, and never set `EURTH_BUILD_TIME` ahead for a deploy.
+- **CI** (`ci.yml`) checks every push; a green push to `main` is deployed, built for the moment it runs.
+- **By hand:** if Advent hasn't started by 22:45 UTC, start it from the Actions tab. If midnight has already passed, start Nightly instead.
 - Deploying needs the organisation's `CLOUDFLARE_API_TOKEN` secret. Without it a run builds, warns and deploys nothing.
 
 ## Releasing
