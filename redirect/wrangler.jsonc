@@ -1,0 +1,20 @@
+// worldbuilding.eurth.org: a second address for the hub. One redirect rule and no files, served
+// as static assets with no Worker script, so it costs no Worker requests. Every path goes to the
+// same path on tools.eurth.org (public/_redirects).
+//
+// It never changes, so no workflow deploys it. By hand, from the repo's root:
+//   npx wrangler deploy --config redirect/wrangler.jsonc
+{
+  "$schema": "../node_modules/wrangler/config-schema.json",
+  "name": "eurth-worldbuilding",
+  // The Cloudflare account that holds the eurth.org zone. Not a secret.
+  "account_id": "0954ead81ed9fd06d343580d95902280",
+  "compatibility_date": "2026-11-01",
+  "workers_dev": false,
+  "preview_urls": false,
+  "assets": {
+    "directory": "./public"
+  },
+  // Deploying creates this custom domain, DNS record included.
+  "routes": [{ "pattern": "worldbuilding.eurth.org", "custom_domain": true }]
+}

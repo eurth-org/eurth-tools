@@ -30,6 +30,7 @@ The site is rebuilt once a day, and each build contains only the doors that are 
 | "Your nation", the one interactive part | `src/tool/Nation.svelte` |
 | The site's name, address, title and pages | `eurth.config.mjs` |
 | The sharing image and icons | `tools/make-images.mjs`, `public/` |
+| The redirect from worldbuilding.eurth.org | `redirect/` |
 | Tests; example profiles to run them on | `tests/`, `tests/fixtures/profiles/` |
 
 The list of tools itself (names, addresses, pitches, launch times, door numbers) is `tools.json` in [@eurth/style](https://github.com/eurth-org/eurth-style), shared by every tool's menu and footer.
@@ -66,6 +67,7 @@ The hub is static files served by a Cloudflare Worker with no script (`wrangler.
 - **Nightly** (`nightly.yml`) runs at 23:10 UTC every day: it updates @eurth/style within version 1, builds for the moment it runs, and deploys if the site differs from what is live.
 - **CI** (`ci.yml`) checks every push; a green push to `main` is deployed, built for the moment it runs.
 - **By hand:** if Advent hasn't started by 22:45 UTC, start it from the Actions tab. If midnight has already passed, start Nightly instead.
+- **worldbuilding.eurth.org** is a second Worker, `eurth-worldbuilding`, that holds one redirect rule and no script (`redirect/`). No workflow deploys it, because it never changes: `npx wrangler deploy --config redirect/wrangler.jsonc`.
 - Deploying needs the organisation's `CLOUDFLARE_API_TOKEN` secret. Without it a run builds, warns and deploys nothing.
 
 ## Releasing

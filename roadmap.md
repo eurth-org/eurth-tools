@@ -12,11 +12,11 @@ Three parts: what comes next, what each release added (newest first), and what's
 - **Who links to the hub.** Every site on the shared shell shows "All tools" in its header and footer from its next build: style.eurth.org does already. Flagwright and Governmint still carry their own header and footer on `main` (each has a `shared-shell` branch waiting for Stijn), so they link to the hub once that is merged.
 - **The handbook's rule** that a site doesn't exist before its door still holds for every tool behind a door, and the hub's builds still hold nothing about them.
 
-**Next: Phase 3** (below): the redirect, and then the calendar itself from 9 December.
+**Next: Phase 3** (below): the status page and the announcement, and then the calendar itself from 9 December.
 
 - **Seen by eye, in headless Chrome** (15 November): the home page in both themes and at phone width, the advent, changelog and about pages, and the door caught mid-swing, all from a build for 13 December. Still worth a look by a person on a real phone, now on the live site.
 - **The `CLOUDFLARE_API_TOKEN` organisation secret** is set for eurth-org (Stijn, 15 November 2026).
-- **The redirect for worldbuilding.eurth.org:** Stijn, in Cloudflare (Phase 3). It has somewhere to land now.
+- **Done on 16 November:** worldbuilding.eurth.org redirects to the hub, and the sitemap is in Search Console (domain property eurth.org; read with "Success"). Open: the status page ([eurth-org/eurth-status#10](https://github.com/eurth-org/eurth-status/pull/10) adds the hub as `TLS006` and waits to be merged) and the announcement on the forum and Discord.
 
 Raised with Foundations (@eurth/style and @eurth/profile), none of them blocking:
 
@@ -39,8 +39,8 @@ Confirmed by Stijn on 14 November 2026.
 
 ### Phase 3: launch
 
-- **worldbuilding.eurth.org.** A second custom domain on the Worker would serve a copy of the site, not a redirect, and a Worker script that redirects would use Worker requests. A Cloudflare Redirect Rule is free and uses none. Stijn to add: a proxied DNS record for `worldbuilding` (AAAA `100::`) and a Single Redirect from `worldbuilding.eurth.org/*` to `https://tools.eurth.org/` (301).
-- **Now that the site is live:** submit the sitemap in Search Console and add the hub to status.eurth.org. Announcing it on the forum and Discord is Stijn's to time.
+- **The status page:** merge [eurth-org/eurth-status#10](https://github.com/eurth-org/eurth-status/pull/10), which deploys it, and look at status.eurth.org afterwards.
+- **The announcement:** a topic in OOC Planning & Discussion on the forum (tag `tool`) and a message in the Discord, in Stijn's name and with words he has approved. No door may be named.
 - **9 December, 22:30 UTC:** the Advent run that opens door 1 at midnight (the run on the 8th changes nothing). On any evening from then to the 24th: if it hasn't started by 22:45 UTC, start Advent by hand; if midnight has passed, start Nightly by hand.
 - **Each morning, 10 to 25 December:** a look at the Advent run and the new door.
 - **After 25 December:** delete `.github/workflows/advent.yml`; Nightly carries on alone.
@@ -50,6 +50,11 @@ Confirmed by Stijn on 14 November 2026.
 - "Advent 2026" stays on the page all year; the calendar code takes a year, so a 2027 calendar is a new schedule and nothing else.
 - A feed (RSS) of the changelog.
 - The changelog filled by each tool's own releases, read at build time, in place of a file kept by hand.
+
+## 16 November 2026: a second address
+
+- **worldbuilding.eurth.org** redirects to the hub, path for path, with a 301. It is a second Worker of static assets only (`redirect/`): one `_redirects` rule and no script, so it costs no Worker requests and needs no rule in the Cloudflare dashboard. Deployed by hand; it never changes.
+- **Search Console:** the hub's sitemap is submitted under the eurth.org domain property.
 
 ## 15 November 2026: the site (0.1.0), live the same day
 
